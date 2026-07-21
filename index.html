@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Skepticism — A Course in Reading Medical Evidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F3A5F;
+    --teal:#2E7D7B;
+    --terra:#C0623B;
+    --amber:#D9A441;
+    --peach:#F2D8C2;
+    --darkred:#8C2F2F;
+    --paper:#FBF8F3;
+    --ink:#22303F;
+    --rule:#D8D2C6;
+    --display:'Fraunces', Georgia, serif;
+    --body:'Source Serif 4', Georgia, serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:17px;
+  }
+  a{color:var(--teal);}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+
+  /* Masthead */
+  header{
+    border-bottom:3px double var(--navy);
+    background:var(--paper);
+    position:sticky; top:0; z-index:10;
+  }
+  .mast{
+    max-width:1060px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .wordmark{
+    font-family:var(--display); font-weight:700; font-size:1.35rem; color:var(--navy);
+    text-decoration:none; letter-spacing:.01em;
+  }
+  .wordmark span{color:var(--terra);}
+  nav a{
+    text-decoration:none; color:var(--navy); font-size:.95rem; margin-left:18px;
+  }
+  nav a:hover{color:var(--terra);}
+
+  /* Hero */
+  .hero{
+    max-width:1060px; margin:0 auto; padding:64px 24px 40px;
+    display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
+  }
+  .hero h1{
+    font-family:var(--display); font-weight:600; font-size:clamp(2.1rem, 4.5vw, 3.2rem);
+    color:var(--navy); line-height:1.12; margin-bottom:18px;
+  }
+  .hero h1 em{font-style:italic; color:var(--terra);}
+  .hero p.lede{font-size:1.12rem; max-width:34em; margin-bottom:22px;}
+  .presenters{font-size:.95rem; color:var(--navy);}
+  .presenters strong{font-weight:600;}
+  .curve-caption{
+    font-size:.82rem; color:var(--teal); text-align:center; margin-top:6px; font-style:italic;
+  }
+
+  /* Announcement */
+  .announce{max-width:1060px; margin:0 auto; padding:8px 24px 16px;}
+  .announce-box{
+    border:1px solid var(--rule); border-left:6px solid var(--amber);
+    background:#fff; padding:26px 28px;
+  }
+  .announce-box .kicker{
+    font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--terra); margin-bottom:6px;
+  }
+  .announce-box h2{
+    font-family:var(--display); font-weight:600; font-size:1.5rem;
+    color:var(--navy); margin-bottom:10px;
+  }
+  .announce-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:18px; margin:14px 0 6px;
+  }
+  .announce-grid .fact h6{
+    font-family:var(--display); font-size:.85rem; color:var(--teal);
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px;
+  }
+  .announce-grid .fact p{font-size:1rem;}
+
+  /* Day sections */
+  .days{max-width:1060px; margin:0 auto; padding:32px 24px 8px;}
+  .days h2, .library h2, .gate h2{
+    font-family:var(--display); font-weight:600; font-size:1.7rem; color:var(--navy);
+    border-bottom:1px solid var(--rule); padding-bottom:10px; margin-bottom:26px;
+  }
+  .day{
+    display:grid; grid-template-columns:120px 1fr; gap:24px;
+    padding:26px 0; border-bottom:1px solid var(--rule);
+  }
+  .day:last-of-type{border-bottom:none;}
+  .day-node{
+    width:84px; height:84px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-weight:700; font-size:1.5rem; color:#fff;
+  }
+  .d1 .day-node{background:var(--teal);}
+  .d2 .day-node{background:var(--terra);}
+  .d3 .day-node{background:var(--navy);}
+  .d4 .day-node{background:var(--darkred);}
+  .day h3{
+    font-family:var(--display); font-weight:600; font-size:1.25rem; color:var(--navy); margin-bottom:6px;
+  }
+  .day p{max-width:52em; margin-bottom:10px;}
+  .anchor-trials{font-size:.85rem; color:var(--teal); font-style:italic;}
+  .materials{margin-top:10px; font-size:.92rem;}
+  .materials a{margin-right:18px; white-space:nowrap;}
+  .placeholder{color:#8A8474; font-size:.85rem; font-style:italic;}
+
+  /* Library */
+  .library{max-width:1060px; margin:0 auto; padding:48px 24px 8px;}
+  .lib-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:18px;}
+  .lib-card{
+    background:#fff; border:1px solid var(--rule); border-top:4px solid var(--amber);
+    padding:18px 18px 14px;
+  }
+  .lib-card h4{font-family:var(--display); font-weight:600; color:var(--navy); font-size:1.02rem; margin-bottom:6px;}
+  .lib-card p{font-size:.9rem; margin-bottom:8px;}
+  .lib-card .src{font-size:.78rem; color:var(--teal); font-style:italic;}
+
+  /* Gate */
+  .gate{max-width:1060px; margin:0 auto; padding:48px 24px;}
+  .gate-box{
+    background:var(--navy); color:var(--peach); padding:30px; border-radius:2px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .gate-box h2{color:var(--peach); border:none; margin:0 0 6px; padding:0;}
+  .gate-box p{max-width:40em; font-size:.97rem;}
+  .gate-btn{
+    background:var(--amber); color:var(--navy); border:none; font-family:var(--body);
+    font-weight:600; font-size:1rem; padding:12px 26px; cursor:pointer; border-radius:2px;
+  }
+  .gate-btn:hover{background:var(--peach);}
+
+  /* Footer */
+  footer{border-top:3px double var(--navy); margin-top:24px;}
+  .foot{
+    max-width:1060px; margin:0 auto; padding:36px 24px;
+    display:grid; grid-template-columns:1fr 1fr; gap:32px;
+  }
+  .bio h5{font-family:var(--display); font-weight:600; color:var(--navy); font-size:1.05rem; margin-bottom:4px;}
+  .bio p{font-size:.92rem;}
+  .colophon{
+    max-width:1060px; margin:0 auto; padding:0 24px 28px;
+    font-size:.8rem; color:#8A8474;
+  }
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .day{grid-template-columns:1fr;}
+    .day-node{width:56px; height:56px; font-size:1.1rem;}
+    .foot{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mast">
+    <a class="wordmark" href="#top">Healthy <span>Skepticism</span></a>
+    <nav aria-label="Site">
+      <a href="#announcement">Upcoming Sessions</a>
+      <a href="#days">The Course</a>
+      <a href="#library">Whitepapers</a>
+      <a href="#students">Student Materials</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div>
+      <h1>Most health headlines are true. <em>Almost none mean what you think.</em></h1>
+      <p class="lede">
+        Healthy Skepticism is a short course for patients who want to make sense of medical
+        information. It builds the intuitions behind the numbers you hear in the news and in
+        the exam room, so you can have better, more confident conversations with your doctor.
+        No prior statistics required, only curiosity and a willingness to ask "compared to
+        what?"
+      </p>
+      <p class="presenters">
+        Presented by <strong>Murray Cantor, PhD</strong> (mathematician, retired IBM Distinguished
+        Engineer) and <strong>Joel Keenan, MD</strong> (practicing physician).
+      </p>
+    </div>
+    <div>
+      <!-- Signature: an icon array, the course's own way of showing what a treatment offers -->
+      <svg viewBox="0 0 420 352" role="img" aria-label="Icon array of 100 circles: 2 helped by treatment, 4 have the event anyway, 94 unaffected either way" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="52" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="22" r="9" fill="#8C2F2F"/>
+        <circle cx="367" cy="22" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="52" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="82" r="9" fill="#2E7D7B"/>
+        <circle cx="192" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="82" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="112" r="9" fill="#8C2F2F"/>
+        <circle cx="122" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="112" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="142" r="9" fill="#8C2F2F"/>
+        <circle cx="332" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="142" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="172" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="202" r="9" fill="#2E7D7B"/>
+        <circle cx="297" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="202" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="232" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="262" r="9" fill="#8C2F2F"/>
+        <circle cx="122" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="262" r="9" fill="#E0D8C6"/>
+        <circle cx="52" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="87" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="122" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="157" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="192" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="227" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="262" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="297" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="332" cy="292" r="9" fill="#E0D8C6"/>
+        <circle cx="367" cy="292" r="9" fill="#E0D8C6"/>
+        <g font-family="Georgia, serif" font-size="12">
+          <circle cx="52" cy="325" r="6" fill="#2E7D7B"/>
+          <text x="64" y="329" fill="#1F3A5F">2 helped by the treatment</text>
+          <circle cx="52" cy="345" r="6" fill="#8C2F2F"/>
+          <text x="64" y="349" fill="#1F3A5F">4 have the event anyway</text>
+          <circle cx="248" cy="325" r="6" fill="#E0D8C6"/>
+          <text x="260" y="329" fill="#1F3A5F">94 fine either way</text>
+        </g>
+      </svg>
+      <p class="curve-caption">One trial, two true descriptions: "risk fell by a third" and
+        "2 people in 100 helped." (Illustrative numbers.)</p>
+    </div>
+  </section>
+
+  <section class="announce" id="announcement">
+    <div class="announce-box">
+      <p class="kicker">Upcoming Sessions</p>
+      <h2>The next offering of Healthy Skepticism</h2>
+      <div class="announce-grid">
+        <div class="fact"><h6>Schedule</h6>
+          <p>One day a week for four weeks</p>
+          <p style="font-size:.9rem; margin-top:4px;">Session dates to be announced</p>
+        </div>
+        <div class="fact"><h6>Location</h6><p>To be announced</p></div>
+        <div class="fact"><h6>Format</h6><p>To be announced</p></div>
+        <div class="fact"><h6>Registration</h6><p>Details coming soon</p></div>
+      </div>
+      <p class="placeholder">Check back soon for dates and registration details.</p>
+    </div>
+  </section>
+
+  <section class="days" id="days">
+    <h2>Three Habits of Mind, One Capstone</h2>
+    <p style="max-width:52em; margin:-10px 0 26px; font-size:.97rem;">
+      Each session follows the same rhythm: short Khan-style videos that start from a discrete
+      case and generalize, questions posed before answers are given, worked examples, and a
+      whitepaper that documents every source.
+    </p>
+
+    <div class="day d1">
+      <div class="day-node" aria-hidden="true">1</div>
+      <div>
+        <h3>How Much Will This Treatment Actually Help Me?</h3>
+        <p>"Cuts heart attacks by a third" and "helps about 2 people in 100" can describe the
+          same trial. Day one builds the habit of always asking for the absolute numbers, using
+          categorizations and benefit graphs to see what a reported effect really offers you.</p>
+        <p class="anchor-trials">The habit: absolute vs. relative benefit · Worked examples:
+          LDL &amp; Lipitor · systolic blood pressure &amp; beta blockers · dietary claims
+          (salt, fat, red wine, coffee)</p>
+        <div class="materials">
+          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day d2">
+      <div class="day-node" aria-hidden="true">2</div>
+      <div>
+        <h3>What Does a Positive Test Really Tell You?</h3>
+        <p>The probability of the evidence given the claim is not the probability of the claim
+          given the evidence. Day two shows how this quiet reversal drives misread test results
+          and miscast causes, and how to run the reasoning in the right direction.</p>
+        <p class="anchor-trials">The habit: not confusing P(A|B) with P(B|A) · Worked examples:
+          disease screening tests · the vaccine–autism claim</p>
+        <div class="materials">
+          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day d3">
+      <div class="day-node" aria-hidden="true">3</div>
+      <div>
+        <h3>When Does an Observation Mean a Cause?</h3>
+        <p>Two things rising together can mean coincidence, a hidden common cause, or genuine
+          mechanism. Day three builds a working taxonomy for telling them apart and explains
+          why observational and experimental evidence carry different weight.</p>
+        <p class="anchor-trials">The habit: correlation vs. causation · Worked examples
+          (all illustrative): dementia &amp; bird watching · ice cream &amp; drownings ·
+          Nicolas Cage films &amp; pool drownings</p>
+        <div class="materials">
+          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day d4">
+      <div class="day-node" aria-hidden="true">4</div>
+      <div>
+        <h3>Putting It All Together: ADHD</h3>
+        <p>One condition, every habit from the course. The capstone works through ADHD end to
+          end: how much treatment actually helps, what a diagnosis really tells you, and which
+          of its claimed causes hold up.</p>
+        <p class="anchor-trials">A single worked example revisiting Days 1–3</p>
+        <div class="materials">
+          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="library" id="library">
+    <h2>Whitepaper Library</h2>
+    <div class="lib-grid">
+      <div class="lib-card">
+        <h4>Reading a Statin Trial</h4>
+        <p>What four decades of statin evidence actually shows, in absolute terms.</p>
+        <p class="src">Sources: 4S, HPS, LIPID, ASCOT-LLA, SAMSON, CTT</p>
+      </div>
+      <div class="lib-card">
+        <h4>Eliquis and Atrial Fibrillation</h4>
+        <p>A do-operator reading of the anticoagulation evidence.</p>
+        <p class="src">Source: AVERROES trial</p>
+      </div>
+      <div class="lib-card">
+        <h4>What a Positive Test Really Means</h4>
+        <p>What a positive result actually tells you about your odds of having the disease.</p>
+        <p class="src">Illustrative worked example</p>
+      </div>
+      <div class="lib-card">
+        <h4>Correlation Is Not Causation — But Then What Is?</h4>
+        <p>A taxonomy of coincidence, latent causes, and genuine mechanism.</p>
+        <p class="src">Illustrative examples, incl. the margarine–Maine correlation</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gate" id="students">
+    <div class="gate-box">
+      <div>
+        <h2>Student Materials</h2>
+        <p>Students have access to the full slide decks, extended whitepapers, datasets,
+          and session videos. Access details are provided during the course.</p>
+      </div>
+      <button class="gate-btn" type="button">Enter student area</button>
+    </div>
+  </section>
+
+  <footer id="about">
+    <div class="foot">
+      <div class="bio">
+        <h5>Murray Cantor, PhD</h5>
+        <p>Mathematician (PhD, UC Berkeley) and retired IBM Distinguished Engineer. Co-author of
+          the Systems Modeling Language (SysML), with a long career applying quantitative
+          reasoning to complex systems.</p>
+      </div>
+      <div class="bio">
+        <h5>Joel Keenan, MD</h5>
+        <p>Physician (MD, University of Vermont, internal medicine board certified) and
+          co-presenter, bringing the clinical perspective: what the evidence looks like from the
+          examining room, and how patients and doctors can reason about it together.</p>
+      </div>
+    </div>
+    <p class="colophon">© 2026 Healthy Skepticism · health-skepticism.com · All course materials
+      cite their sources; illustrative examples are labeled as such.</p>
+  </footer>
+</main>
+
+</body>
+</html>
