@@ -131,6 +131,11 @@
     padding:18px 18px 14px;
   }
   .lib-card h4{font-family:var(--display); font-weight:600; color:var(--navy); font-size:1.02rem; margin-bottom:6px;}
+  .lib-card h4 a{
+    color:inherit; text-decoration:underline;
+    text-decoration-color:var(--amber); text-underline-offset:3px;
+  }
+  .lib-card h4 a:hover{color:var(--terra);}
   .lib-card p{font-size:.9rem; margin-bottom:8px;}
   .lib-card .src{font-size:.78rem; color:var(--teal); font-style:italic;}
 
@@ -187,7 +192,7 @@
 <main id="top">
   <section class="hero">
     <div>
-      <h1>Most health headlines are true. <em>Almost none mean what you think.</em></h1>
+      <h1>How likely is it that this pill or procedure will actually help me?</h1>
       <p class="lede">
         Healthy Skepticism is a short course for patients who want to make sense of medical
         information. It builds the intuitions behind the numbers you hear in the news and in
@@ -197,7 +202,7 @@
       </p>
       <p class="presenters">
         Presented by <strong>Murray Cantor, PhD</strong> (mathematician, retired IBM Distinguished
-        Engineer) and <strong>Joel Keenan, MD</strong> (practicing physician).
+        Engineer), assisted by <strong>Joel Keenan, MD</strong> (practicing physician).
       </p>
     </div>
     <div>
@@ -323,14 +328,16 @@
       <h2>The next offering of Healthy Skepticism</h2>
       <div class="announce-grid">
         <div class="fact"><h6>Schedule</h6>
-          <p>One day a week for four weeks</p>
-          <p style="font-size:.9rem; margin-top:4px;">Session dates to be announced</p>
+          <p>Thursdays, September 3 to 24, 2026</p>
+          <p style="font-size:.9rem; margin-top:4px;">Weekly, 10:00 to 11:15 a.m.</p>
         </div>
-        <div class="fact"><h6>Location</h6><p>To be announced</p></div>
+        <div class="fact"><h6>Location</h6><p>Yavapai College, Verde Valley Campus, Clarkdale, Arizona</p></div>
         <div class="fact"><h6>Format</h6><p>To be announced</p></div>
-        <div class="fact"><h6>Registration</h6><p>Details coming soon</p></div>
+        <div class="fact"><h6>Registration</h6>
+          <p>Through OLLI at Yavapai College, Course 35</p>
+          <p style="font-size:.9rem; margin-top:4px;"><a href="https://www.yc.edu/olli">www.yc.edu/olli</a></p>
+        </div>
       </div>
-      <p class="placeholder">Check back soon for dates and registration details.</p>
     </div>
   </section>
 
@@ -345,7 +352,7 @@
     <div class="day d1">
       <div class="day-node" aria-hidden="true">1</div>
       <div>
-        <h3>How Much Will This Treatment Actually Help Me?</h3>
+        <h3>How likely is it that this treatment will actually help me?</h3>
         <p>"Cuts heart attacks by a third" and "helps about 2 people in 100" can describe the
           same trial. Day one builds the habit of always asking for the absolute numbers, using
           categorizations and benefit graphs to see what a reported effect really offers you.</p>
@@ -408,24 +415,28 @@
     <h2>Whitepaper Library</h2>
     <div class="lib-grid">
       <div class="lib-card">
-        <h4>Reading a Statin Trial</h4>
-        <p>What four decades of statin evidence actually shows, in absolute terms.</p>
-        <p class="src">Sources: 4S, HPS, LIPID, ASCOT-LLA, SAMSON, CTT</p>
+        <h4><a href="papers/relative-vs-absolute-risk.pdf">Relative Risk, Absolute Risk, and the Arithmetic of Persuasion</a></h4>
+        <p>Why one trial can be reported as a 95% cut or as a drop of less than a percentage
+          point, worked through atorvastatin and the COVID-19 vaccines.</p>
+        <p class="src">Sources: CTT Collaboration, ASCOT-LLA, CARDS, TNT, Olliaro et al. 2021</p>
       </div>
       <div class="lib-card">
-        <h4>Eliquis and Atrial Fibrillation</h4>
-        <p>A do-operator reading of the anticoagulation evidence.</p>
-        <p class="src">Source: AVERROES trial</p>
+        <h4><a href="papers/bmi-mortality-methodology.pdf">Absolute Mortality Risk as a Function of BMI</a></h4>
+        <p>How the course's BMI risk curves are built, and where each assumption is most
+          likely to mislead.</p>
+        <p class="src">Sources: Global BMI Mortality Collaboration 2016, SSA period life table 2019, WHO TRS 894</p>
       </div>
       <div class="lib-card">
-        <h4>What a Positive Test Really Means</h4>
-        <p>What a positive result actually tells you about your odds of having the disease.</p>
-        <p class="src">Illustrative worked example</p>
+        <h4><a href="papers/blood-pressure-mortality.pdf">Blood Pressure and Mortality</a></h4>
+        <p>The dose-response between usual pressure and vascular death, and a Bayesian network
+          running from age, sex, and both pressures to ten-year cardiovascular death.</p>
+        <p class="src">Sources: Lewington et al. 2002, SPRINT 2015 and 2021, Franklin et al. 1999 and 2001, SHEP 1991</p>
       </div>
       <div class="lib-card">
-        <h4>Correlation Is Not Causation — But Then What Is?</h4>
-        <p>A taxonomy of coincidence, latent causes, and genuine mechanism.</p>
-        <p class="src">Illustrative examples, incl. the margarine–Maine correlation</p>
+        <h4><a href="papers/how-sure-is-sure-enough.pdf">How Sure Is Sure Enough?</a></h4>
+        <p>Why a finding that makes headlines in medicine would not count as a discovery
+          in physics.</p>
+        <p class="src">Sources: ATLAS and CMS 2012, Berger and Sellke 1987, Ioannidis 2005, ASA statement 2016</p>
       </div>
     </div>
   </section>
