@@ -93,6 +93,13 @@
     text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px;
   }
   .announce-grid .fact p{font-size:1rem;}
+  .announce-box + .announce-box{margin-top:18px;}
+  .announce-box h2 .when{
+    display:block; font-family:var(--body); font-weight:400; font-size:.95rem; color:var(--ink);
+  }
+  .session-list{list-style:none; margin:10px 0 0; padding:12px 0 0; border-top:1px solid var(--rule);}
+  .session-list li{font-size:.95rem; padding:3px 0;}
+  .session-list .sdate{color:var(--teal); font-weight:600;}
 
   /* Day sections */
   .days{max-width:1060px; margin:0 auto; padding:32px 24px 8px;}
@@ -324,8 +331,10 @@
 
   <section class="announce" id="announcement">
     <div class="announce-box">
-      <p class="kicker">Upcoming Sessions</p>
-      <h2>The next offering of Healthy Skepticism</h2>
+      <p class="kicker">Fall 2026</p>
+      <h2>Healthy Skepticism
+        <span class="when">OLLI at Yavapai College, a four-part series</span>
+      </h2>
       <div class="announce-grid">
         <div class="fact"><h6>Schedule</h6>
           <p>Thursdays, September 3 to 24, 2026</p>
@@ -338,6 +347,35 @@
           <p style="font-size:.9rem; margin-top:4px;"><a href="https://www.yc.edu/olli">www.yc.edu/olli</a></p>
         </div>
       </div>
+    </div>
+
+    <div class="announce-box">
+      <p class="kicker">Winter 2027</p>
+      <h2>Healthy Skepticism: Making Sense of Medical Claims
+        <span class="when">Community Library Sedona, a four-part series</span>
+      </h2>
+      <div class="announce-grid">
+        <div class="fact"><h6>Schedule</h6>
+          <p>Thursdays, February 4 to 25, 2027</p>
+          <p style="font-size:.9rem; margin-top:4px;">Weekly, 2:00 to 3:30 p.m. Arizona time</p>
+        </div>
+        <div class="fact"><h6>Location</h6><p>Multi-Purpose Room, Community Library Sedona</p></div>
+        <div class="fact"><h6>Format</h6><p>In person, adult audience</p></div>
+        <div class="fact"><h6>Registration</h6>
+          <p>Through the library event calendar</p>
+          <p style="font-size:.9rem; margin-top:4px;"><a href="https://communitylibrarysedona.libcal.com/event/17126459">Event listing and dates</a></p>
+        </div>
+      </div>
+      <ul class="session-list">
+        <li><span class="sdate">February 4:</span>
+          <a href="https://communitylibrarysedona.libcal.com/event/17126459">Seeing Through Medical Headlines</a></li>
+        <li><span class="sdate">February 11:</span>
+          <a href="https://communitylibrarysedona.libcal.com/event/17126460">Why Medical Advice Keeps Changing</a></li>
+        <li><span class="sdate">February 18:</span>
+          <a href="https://communitylibrarysedona.libcal.com/event/17126461">Understanding Medical Tests</a></li>
+        <li><span class="sdate">February 25:</span>
+          <a href="https://communitylibrarysedona.libcal.com/event/17126462">Confusing Cause and Effect</a></li>
+      </ul>
     </div>
   </section>
 
