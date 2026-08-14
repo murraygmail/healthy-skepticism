@@ -154,6 +154,7 @@
   .gate-btn{
     background:var(--amber); color:var(--navy); border:none; font-family:var(--body);
     font-weight:600; font-size:1rem; padding:12px 26px; cursor:pointer; border-radius:2px;
+    display:inline-block; text-decoration:none;
   }
   .gate-btn:hover{background:var(--peach);}
 
@@ -372,7 +373,7 @@
   </section>
 
   <section class="days" id="days">
-    <h2>Three Habits of Mind, One Capstone</h2>
+    <h2>Four Sessions, Five Faults</h2>
     <p style="max-width:52em; margin:-10px 0 26px; font-size:.97rem;">
       Each session follows the same rhythm: short Khan Academy-style videos that start from a discrete
       case and generalize, questions posed before answers are given, worked examples, and a
@@ -383,12 +384,11 @@
       <div class="day-node" aria-hidden="true">1</div>
       <div>
         <h3>How Likely Is It That This Treatment Will Actually Help Me?</h3>
-        <p>"Cuts heart attacks by a third" and "helps about 2 people in 100" can describe the
-          same trial. Day one builds the habit of always asking for the absolute numbers, using
-          categorizations and benefit graphs to see what a reported effect really offers you.</p>
-        <p class="anchor-trials">The habit: absolute vs. relative benefit · Worked examples:
-          LDL &amp; Lipitor · systolic blood pressure &amp; beta blockers · dietary claims
-          (salt, fat, red wine, coffee)</p>
+        <p>"Cuts heart attacks by a third" and "helps about 11 people in 1,000" can describe the
+          same trial. Day one is Fault 1, relative reporting: the habit of asking what a headline
+          percentage is a percentage of, and reading the absolute numbers underneath it.</p>
+        <p class="anchor-trials">The fault: relative reporting · Worked example: the Lipitor
+          "36%" headline, shown as 1,000 people</p>
         <div class="materials">
           <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
         </div>
@@ -399,11 +399,12 @@
       <div class="day-node" aria-hidden="true">2</div>
       <div>
         <h3>What Does a Positive Test Really Tell You?</h3>
-        <p>The probability of the evidence given the claim is not the probability of the claim
-          given the evidence. Day two shows how this quiet reversal drives misread test results
-          and miscast causes, and how to run the reasoning in the right direction.</p>
-        <p class="anchor-trials">The habit: not confusing P(A|B) with P(B|A) · Worked examples:
-          disease screening tests · the vaccine–autism claim</p>
+        <p>The probability of the evidence given the condition is not the probability of the
+          condition given the evidence. Day two is Fault 2, probability reversal: how this quiet
+          flip misreads screening results, and how to run the reasoning in the right direction.</p>
+        <p class="anchor-trials">The fault: probability reversal, not confusing P(A|B) with
+          P(B|A) · Worked examples: a screening mammogram · a COVID rapid test · courtrooms and
+          classrooms</p>
         <div class="materials">
           <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
         </div>
@@ -413,13 +414,14 @@
     <div class="day d3">
       <div class="day-node" aria-hidden="true">3</div>
       <div>
-        <h3>When Does an Observation Mean a Cause?</h3>
-        <p>Two things rising together can mean coincidence, a hidden common cause, or genuine
-          mechanism. Day three builds a working taxonomy for telling them apart and explains
-          why observational and experimental evidence carry different weight.</p>
-        <p class="anchor-trials">The habit: correlation vs. causation · Worked examples
-          (all illustrative): dementia &amp; bird watching · ice cream &amp; drownings ·
-          Nicolas Cage films &amp; pool drownings</p>
+        <h3>Where "High" Begins, and Why the Advice Keeps Changing</h3>
+        <p>Day three carries two faults. Fault 3, arbitrary categories: a cutoff turns a
+          measurement into a label, and moving the line reclassifies millions of people whose
+          numbers never changed. Fault 4, the Bernoulli fallacy: reading the chance of the data
+          if there were no effect as the chance there is no effect, which is how single studies
+          get overturned.</p>
+        <p class="anchor-trials">The faults: arbitrary categories · the Bernoulli fallacy ·
+          Worked examples: blood-pressure and BMI cutoffs · what a p-value does and does not say</p>
         <div class="materials">
           <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
         </div>
@@ -429,11 +431,14 @@
     <div class="day d4">
       <div class="day-node" aria-hidden="true">4</div>
       <div>
-        <h3>Putting It All Together: ADHD</h3>
-        <p>One condition, every habit from the course. The capstone works through ADHD end to
-          end: how much treatment actually helps, what a diagnosis really tells you, and which
-          of its claimed causes hold up.</p>
-        <p class="anchor-trials">A single worked example revisiting Days 1–3</p>
+        <h3>When Does a Correlation Mean a Cause?</h3>
+        <p>Two things move together in three ways without the first causing the second:
+          coincidence, a shared cause, or the arrow running backward. Day four is Fault 5, the
+          causal leap, and the whole day comes down to asking which diagram a claim assumes and
+          what would rule the others out.</p>
+        <p class="anchor-trials">The fault: the causal leap · Worked examples: Nicolas Cage films
+          &amp; drownings · statins &amp; car crashes · bird watching &amp; dementia · and the one
+          real cause, smoking &amp; cancer</p>
         <div class="materials">
           <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
         </div>
@@ -481,9 +486,10 @@
       <div>
         <h2>Student Materials</h2>
         <p>Students have access to the full slide decks, extended whitepapers, datasets,
-          and session videos. Access details are provided during the course.</p>
+          and session videos. The student page is password protected. The password is given
+          out in class.</p>
       </div>
-      <button class="gate-btn" type="button">Enter student area</button>
+      <a class="gate-btn" href="students.html">Enter student area</a>
     </div>
   </section>
 
