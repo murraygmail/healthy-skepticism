@@ -1,518 +1,180 @@
 <!DOCTYPE html>
+<!--
+  Healthy Skepticism — landing page.
+
+  Built to match materials.html, so the two pages share one stylesheet's worth
+  of tokens. Three things to check before committing:
+
+    1. The "Enter student area" link points to students.html. Change it if the
+       gated page ends up with a different filename.
+    2. The OFFERINGS block is marked below. Add a venue by copying one
+       <dt>/<dd> pair. Check the dates each term.
+    3. The whitepaper section has been removed for now. It sat between the
+       offerings and the student area if you want it back.
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healthy Skepticism — A Course in Reading Medical Evidence</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Healthy Skepticism</title>
+<meta name="description" content="A short course on reading medical claims: what the numbers in a study, a screening test or a drug advertisement actually say.">
 <style>
   :root{
     --navy:#1F3A5F;
     --teal:#2E7D7B;
-    --terra:#C0623B;
-    --amber:#D9A441;
-    --peach:#F2D8C2;
-    --darkred:#8C2F2F;
-    --paper:#FBF8F3;
-    --ink:#22303F;
-    --rule:#D8D2C6;
-    --display:'Fraunces', Georgia, serif;
-    --body:'Source Serif 4', Georgia, serif;
+    --teal-pale:#7FB3B5;
+    --terra:#C05B3C;
+    --amber:#E08A3C;
+    --darkred:#8B2323;
+    --ink:#22252A;
+    --paper:#FBF9F5;
+    --rule:#DBD5CA;
+    --muted:#6B6F76;
+    --serif:"Bookman Old Style","Bookman","Georgia",serif;
+    --sans:"Calibri","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
   body{
-    font-family:var(--body);
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.6;
-    font-size:17px;
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:19px;line-height:1.55;
   }
-  a{color:var(--teal);}
-  a:focus-visible, button:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+  .wrap{max-width:50rem;margin:0 auto;padding:3rem 1.5rem 5rem}
+  a{color:var(--navy)}
+  a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:2px}
 
-  /* Masthead */
-  header{
-    border-bottom:3px double var(--navy);
-    background:var(--paper);
-    position:sticky; top:0; z-index:10;
+  /* ---------- masthead ---------- */
+  .masthead{border-bottom:2px solid var(--navy);padding-bottom:1.75rem;margin-bottom:2.5rem}
+  .eyebrow{
+    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);font-weight:700;margin:0 0 .6rem
   }
-  .mast{
-    max-width:1060px; margin:0 auto; padding:14px 24px;
-    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
-  }
-  .wordmark{
-    font-family:var(--display); font-weight:700; font-size:1.35rem; color:var(--navy);
-    text-decoration:none; letter-spacing:.01em;
-  }
-  .wordmark span{color:var(--terra);}
-  nav a{
-    text-decoration:none; color:var(--navy); font-size:.95rem; margin-left:18px;
-  }
-  nav a:hover{color:var(--terra);}
+  h1{font-family:var(--serif);font-size:2.6rem;line-height:1.12;margin:0 0 1rem;color:var(--navy);font-weight:400}
+  .standfirst{margin:0;max-width:36rem;font-size:1.1rem}
 
-  /* Hero */
-  .hero{
-    max-width:1060px; margin:0 auto; padding:64px 24px 40px;
-    display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
+  /* ---------- sections ---------- */
+  section{padding:2.5rem 0;border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:0}
+  h2{font-family:var(--serif);font-size:1.6rem;line-height:1.2;margin:0 0 1rem;font-weight:400;color:var(--navy)}
+  p{max-width:38rem}
+  p:last-child{margin-bottom:0}
+
+  /* ---------- the five faults ---------- */
+  ol.faults{list-style:none;margin:0;padding:0;counter-reset:fault}
+  ol.faults li{padding:1rem 0;border-top:1px solid var(--rule);counter-increment:fault}
+  ol.faults li:first-child{border-top:0}
+  ol.faults .name{
+    font-family:var(--serif);font-size:1.2rem;color:var(--ink);display:block
   }
-  .hero h1{
-    font-family:var(--display); font-weight:600; font-size:clamp(2.1rem, 4.5vw, 3.2rem);
-    color:var(--navy); line-height:1.12; margin-bottom:18px;
+  ol.faults .name::before{
+    content:counter(fault);
+    font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--teal);
+    display:inline-block;min-width:1.6rem;vertical-align:.15em
   }
-  .hero h1 em{font-style:italic; color:var(--terra);}
-  .hero p.lede{font-size:1.12rem; max-width:34em; margin-bottom:22px;}
-  .presenters{font-size:.95rem; color:var(--navy);}
-  .presenters strong{font-weight:600;}
-  .curve-caption{
-    font-size:.82rem; color:var(--teal); text-align:center; margin-top:6px; font-style:italic;
+  ol.faults .q{
+    font-family:var(--serif);font-style:italic;color:var(--muted);
+    margin:.3rem 0 0 1.6rem;display:block
   }
 
-  /* Announcement */
-  .announce{max-width:1060px; margin:0 auto; padding:8px 24px 16px;}
-  .announce-box{
-    border:1px solid var(--rule); border-left:6px solid var(--amber);
-    background:#fff; padding:26px 28px;
+
+  /* ---------- student area ---------- */
+  .cta{
+    display:inline-block;font-weight:600;text-decoration:none;color:#fff;
+    background:var(--navy);padding:.7rem 1.3rem;border-radius:3px;margin-top:.25rem
   }
-  .announce-box .kicker{
-    font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--terra); margin-bottom:6px;
-  }
-  .announce-box h2{
-    font-family:var(--display); font-weight:600; font-size:1.5rem;
-    color:var(--navy); margin-bottom:10px;
-  }
-  .announce-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
-    gap:18px; margin:14px 0 6px;
-  }
-  .announce-grid .fact h6{
-    font-family:var(--display); font-size:.85rem; color:var(--teal);
-    text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px;
-  }
-  .announce-grid .fact p{font-size:1rem;}
-  .announce-box + .announce-box{margin-top:18px;}
-  .announce-box h2 .when{
-    display:block; font-family:var(--body); font-weight:400; font-size:.95rem; color:var(--ink);
+  .cta:hover{background:var(--teal)}
+  .cta:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--navy);font-size:.95rem;color:var(--muted)}
+  footer p{max-width:38rem}
+  footer a{color:var(--navy)}
+
+  @media (max-width:34rem){
+    body{font-size:18px}
+    .wrap{padding:2rem 1.15rem 3.5rem}
+    h1{font-size:2rem}
+    h2{font-size:1.4rem}
   }
 
-  /* Day sections */
-  .days{max-width:1060px; margin:0 auto; padding:32px 24px 8px;}
-  .days h2, .library h2, .gate h2{
-    font-family:var(--display); font-weight:600; font-size:1.7rem; color:var(--navy);
-    border-bottom:1px solid var(--rule); padding-bottom:10px; margin-bottom:26px;
+  /* ---------- venues ---------- */
+  dl.venues{margin:0}
+  dl.venues dt{
+    font-family:var(--serif);font-size:1.15rem;color:var(--ink);
+    padding-top:1rem;margin-top:1rem;border-top:1px solid var(--rule)
   }
-  .day{
-    display:grid; grid-template-columns:120px 1fr; gap:24px;
-    padding:26px 0; border-bottom:1px solid var(--rule);
-  }
-  .day:last-of-type{border-bottom:none;}
-  .day-node{
-    width:84px; height:84px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--display); font-weight:700; font-size:1.5rem; color:#fff;
-  }
-  .d1 .day-node{background:var(--teal);}
-  .d2 .day-node{background:var(--terra);}
-  .d3 .day-node{background:var(--navy);}
-  .d4 .day-node{background:var(--darkred);}
-  .day h3{
-    font-family:var(--display); font-weight:600; font-size:1.25rem; color:var(--navy); margin-bottom:6px;
-  }
-  .day p{max-width:52em; margin-bottom:10px;}
-  .anchor-trials{font-size:.85rem; color:var(--teal); font-style:italic;}
-  .materials{margin-top:10px; font-size:.92rem;}
-  .materials a{margin-right:18px; white-space:nowrap;}
-  .placeholder{color:#8A8474; font-size:.85rem; font-style:italic;}
-
-  /* Library */
-  .library{max-width:1060px; margin:0 auto; padding:48px 24px 8px;}
-  .lib-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:18px;}
-  .lib-card{
-    background:#fff; border:1px solid var(--rule); border-top:4px solid var(--amber);
-    padding:18px 18px 14px;
-  }
-  .lib-card h4{font-family:var(--display); font-weight:600; color:var(--navy); font-size:1.02rem; margin-bottom:6px;}
-  .lib-card h4 a{
-    color:inherit; text-decoration:underline;
-    text-decoration-color:var(--amber); text-underline-offset:3px;
-  }
-  .lib-card h4 a:hover{color:var(--terra);}
-  .lib-card p{font-size:.9rem; margin-bottom:8px;}
-  .lib-card .src{font-size:.78rem; color:var(--teal); font-style:italic;}
-
-  /* Gate */
-  .gate{max-width:1060px; margin:0 auto; padding:48px 24px;}
-  .gate-box{
-    background:var(--navy); color:var(--peach); padding:30px; border-radius:2px;
-    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
-  }
-  .gate-box h2{color:var(--peach); border:none; margin:0 0 6px; padding:0;}
-  .gate-box p{max-width:40em; font-size:.97rem;}
-  .gate-btn{
-    background:var(--amber); color:var(--navy); border:none; font-family:var(--body);
-    font-weight:600; font-size:1rem; padding:12px 26px; cursor:pointer; border-radius:2px;
-    display:inline-block; text-decoration:none;
-  }
-  .gate-btn:hover{background:var(--peach);}
-
-  /* Footer */
-  footer{border-top:3px double var(--navy); margin-top:24px;}
-  .foot{
-    max-width:1060px; margin:0 auto; padding:36px 24px;
-    display:grid; grid-template-columns:1fr 1fr; gap:32px;
-  }
-  .bio h5{font-family:var(--display); font-weight:600; color:var(--navy); font-size:1.05rem; margin-bottom:4px;}
-  .bio p{font-size:.92rem;}
-  .colophon{
-    max-width:1060px; margin:0 auto; padding:0 24px 28px;
-    font-size:.8rem; color:#8A8474;
-  }
-  .contact{
-    max-width:1060px; margin:0 auto; padding:0 24px 14px;
-    font-size:.92rem;
-  }
-  .contact a{color:var(--navy); font-weight:600;}
-
-  @media (max-width:760px){
-    .hero{grid-template-columns:1fr; padding-top:40px;}
-    .day{grid-template-columns:1fr;}
-    .day-node{width:56px; height:56px; font-size:1.1rem;}
-    .foot{grid-template-columns:1fr;}
-  }
+  dl.venues dt:first-child{padding-top:0;margin-top:0;border-top:0}
+  dl.venues dd{margin:.3rem 0 0;max-width:38rem;color:var(--muted)}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="mast">
-    <a class="wordmark" href="#top">Healthy <span>Skepticism</span></a>
-    <nav aria-label="Site">
-      <a href="#announcement">Upcoming Sessions</a>
-      <a href="#days">The Course</a>
-      <a href="#library">Whitepapers</a>
-      <a href="#students">Student Materials</a>
-      <a href="#about">About</a>
-    </nav>
-  </div>
-</header>
+  <header class="masthead">
+    <p class="eyebrow">A short course</p>
+    <h1>Healthy Skepticism</h1>
+    <p class="standfirst">Making sense of medical claims. Four sessions on what the numbers in a study, a screening test or a drug advertisement actually say, so you can have a better conversation with your doctor.</p>
+  </header>
 
-<main id="top">
-  <section class="hero">
-    <div>
-      <h1>How likely is it that this pill or procedure will actually help me?</h1>
-      <p class="lede">
-        Healthy Skepticism is a short course for patients who want to make sense of medical
-        information. It builds the intuitions behind the numbers you hear in the news and in
-        the exam room, so you can have better, more confident conversations with your doctor.
-        No prior statistics required, only curiosity and a willingness to ask "compared to
-        what?"
-      </p>
-      <p class="presenters">
-        Presented by <strong>Murray Cantor, PhD</strong> (mathematician, retired IBM Distinguished
-        Engineer), assisted by <strong>Joel Keenan, MD</strong> (practicing physician).
-      </p>
-    </div>
-    <div>
-      <!-- Signature: an icon array, the course's own way of showing what a treatment offers -->
-      <svg viewBox="0 0 420 352" role="img" aria-label="Icon array of 100 circles: 2 helped by treatment, 4 have the event anyway, 94 unaffected either way" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="52" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="22" r="9" fill="#8C2F2F"/>
-        <circle cx="367" cy="22" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="52" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="82" r="9" fill="#2E7D7B"/>
-        <circle cx="192" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="82" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="112" r="9" fill="#8C2F2F"/>
-        <circle cx="122" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="112" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="142" r="9" fill="#8C2F2F"/>
-        <circle cx="332" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="142" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="172" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="202" r="9" fill="#2E7D7B"/>
-        <circle cx="297" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="202" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="232" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="262" r="9" fill="#8C2F2F"/>
-        <circle cx="122" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="262" r="9" fill="#E0D8C6"/>
-        <circle cx="52" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="87" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="122" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="157" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="192" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="227" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="262" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="297" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="332" cy="292" r="9" fill="#E0D8C6"/>
-        <circle cx="367" cy="292" r="9" fill="#E0D8C6"/>
-        <g font-family="Georgia, serif" font-size="12">
-          <circle cx="52" cy="325" r="6" fill="#2E7D7B"/>
-          <text x="64" y="329" fill="#1F3A5F">2 helped by the treatment</text>
-          <circle cx="52" cy="345" r="6" fill="#8C2F2F"/>
-          <text x="64" y="349" fill="#1F3A5F">4 have the event anyway</text>
-          <circle cx="248" cy="325" r="6" fill="#E0D8C6"/>
-          <text x="260" y="329" fill="#1F3A5F">94 fine either way</text>
-        </g>
-      </svg>
-      <p class="curve-caption">One trial, two true descriptions: "risk fell by a third" and
-        "2 people in 100 helped." (Illustrative numbers.)</p>
-    </div>
+  <section>
+    <h2>What the course is</h2>
+    <p>Medical claims arrive as numbers. A drug cuts your risk by 36%. A test is 99% accurate. A finding is statistically significant. Each of those sentences is true and none of them answers the question you actually have.</p>
+    <p>The course works through five ways numbers mislead, one at a time, with real studies and real advertisements. Everything is done by counting. There is no mathematics beyond arithmetic, and no assumption that you have seen any statistics before.</p>
+    <p>Taught by Murray Cantor, PhD, and Joel Keenan, MD.</p>
   </section>
 
-  <section class="announce" id="announcement">
-    <div class="announce-box">
-      <p class="kicker">Fall 2026</p>
-      <h2>Healthy Skepticism
-        <span class="when">OLLI at Yavapai College, a four-part series</span>
-      </h2>
-      <div class="announce-grid">
-        <div class="fact"><h6>Schedule</h6>
-          <p>Thursdays, September 3 to 24, 2026</p>
-          <p style="font-size:.9rem; margin-top:4px;">Weekly, 10:00 to 11:15 a.m.</p>
-        </div>
-        <div class="fact"><h6>Location</h6><p>Yavapai College, Verde Valley Campus, Clarkdale, Arizona</p></div>
-        <div class="fact"><h6>Format</h6><p>In person</p></div>
-        <div class="fact"><h6>Registration</h6>
-          <p>Through OLLI at Yavapai College, Course 35</p>
-          <p style="font-size:.9rem; margin-top:4px;"><a href="https://www.yc.edu/olli">www.yc.edu/olli</a></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="announce-box">
-      <p class="kicker">Winter 2027</p>
-      <h2>Healthy Skepticism: Making Sense of Medical Claims
-        <span class="when">Community Library Sedona, a four-part series</span>
-      </h2>
-      <div class="announce-grid">
-        <div class="fact"><h6>Schedule</h6>
-          <p>Thursdays, February 4 to 25, 2027</p>
-          <p style="font-size:.9rem; margin-top:4px;">Weekly, 2:00 to 3:30 p.m. Arizona time</p>
-        </div>
-        <div class="fact"><h6>Location</h6><p>Multi-Purpose Room, Community Library Sedona</p></div>
-        <div class="fact"><h6>Format</h6><p>In person, adult audience</p></div>
-        <div class="fact"><h6>Registration</h6>
-          <p>Through the library event calendar</p>
-          <p style="font-size:.9rem; margin-top:4px;"><a href="https://communitylibrarysedona.libcal.com/event/17126459">Event listing and dates</a></p>
-        </div>
-      </div>
-    </div>
+  <section>
+    <h2>The five faults</h2>
+    <ol class="faults">
+      <li>
+        <span class="name">Relative reporting</span>
+        <span class="q">What does a 36% improvement from taking a drug really mean?</span>
+      </li>
+      <li>
+        <span class="name">Probability reversal</span>
+        <span class="q">What does a positive COVID test really mean?</span>
+      </li>
+      <li>
+        <span class="name">Arbitrary categories</span>
+        <span class="q">How concerned should you be if your systolic blood pressure goes from 119 to 120?</span>
+      </li>
+      <li>
+        <span class="name">The Bernoulli fallacy</span>
+        <span class="q">Why does the published medical advice keep changing?</span>
+      </li>
+      <li>
+        <span class="name">The causal leap</span>
+        <span class="q">Does bird watching prevent dementia?</span>
+      </li>
+    </ol>
   </section>
 
-  <section class="days" id="days">
-    <h2>Four Sessions, Five Faults</h2>
-    <p style="max-width:52em; margin:-10px 0 26px; font-size:.97rem;">
-      Each session follows the same rhythm: short Khan Academy-style videos that start from a discrete
-      case and generalize, questions posed before answers are given, worked examples, and a
-      whitepaper that documents every source.
-    </p>
+  <!-- ============ OFFERINGS: edit or add a venue here ============ -->
+  <section>
+    <h2>Where it is offered</h2>
+    <dl class="venues">
+      <dt>OLLI at Yavapai College</dt>
+      <dd>Verde Valley Campus, Clarkdale. Four Thursdays, 3 to 24 September 2026, 10:00 to 11:15, in person. Course 35. Registration through <a href="https://www.yc.edu/olli">yc.edu/olli</a>.</dd>
 
-    <div class="day d1">
-      <div class="day-node" aria-hidden="true">1</div>
-      <div>
-        <h3>How Likely Is It That This Treatment Will Actually Help Me?</h3>
-        <p>"Cuts heart attacks by a third" and "helps about 11 people in 1,000" can describe the
-          same trial. Day one is Fault 1, relative reporting: the habit of asking what a headline
-          percentage is a percentage of, and reading the absolute numbers underneath it.</p>
-        <p class="anchor-trials">The fault: relative reporting · Worked example: the Lipitor
-          "36%" headline, shown as 1,000 people</p>
-        <div class="materials">
-          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
-        </div>
-      </div>
-    </div>
+      <dt>Community Library Sedona</dt>
+      <dd>Multi-Purpose Room. Four Thursdays, 4 to 25 February 2027, 2:00 to 3:30. <a href="https://communitylibrarysedona.libcal.com/event/17126459">Registration and details</a>.</dd>
+    </dl>
+  </section>
+  <!-- ============================================================= -->
 
-    <div class="day d2">
-      <div class="day-node" aria-hidden="true">2</div>
-      <div>
-        <h3>What Does a Positive Test Really Tell You?</h3>
-        <p>The probability of the evidence given the condition is not the probability of the
-          condition given the evidence. Day two is Fault 2, probability reversal: how this quiet
-          flip misreads screening results, and how to run the reasoning in the right direction.</p>
-        <p class="anchor-trials">The fault: probability reversal, not confusing P(A|B) with
-          P(B|A) · Worked examples: a screening mammogram · a COVID rapid test · courtrooms and
-          classrooms</p>
-        <div class="materials">
-          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="day d3">
-      <div class="day-node" aria-hidden="true">3</div>
-      <div>
-        <h3>Where "High" Begins, and Why the Advice Keeps Changing</h3>
-        <p>Day three carries two faults. Fault 3, arbitrary categories: a cutoff turns a
-          measurement into a label, and moving the line reclassifies millions of people whose
-          numbers never changed. Fault 4, the Bernoulli fallacy: reading the chance of the data
-          if there were no effect as the chance there is no effect, which is how single studies
-          get overturned.</p>
-        <p class="anchor-trials">The faults: arbitrary categories · the Bernoulli fallacy ·
-          Worked examples: blood-pressure and BMI cutoffs · what a p-value does and does not say</p>
-        <div class="materials">
-          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="day d4">
-      <div class="day-node" aria-hidden="true">4</div>
-      <div>
-        <h3>When Does a Correlation Mean a Cause?</h3>
-        <p>Two things move together in three ways without the first causing the second:
-          coincidence, a shared cause, or the arrow running backward. Day four is Fault 5, the
-          causal leap, and the whole day comes down to asking which diagram a claim assumes and
-          what would rule the others out.</p>
-        <p class="anchor-trials">The fault: the causal leap · Worked examples: Nicolas Cage films
-          &amp; drownings · statins &amp; car crashes · bird watching &amp; dementia · and the one
-          real cause, smoking &amp; cancer</p>
-        <div class="materials">
-          <span class="placeholder">Videos · Whitepaper · Slides — links coming soon</span>
-        </div>
-      </div>
-    </div>
+  <section>
+    <h2>For students</h2>
+    <p>Slides and take-home summaries for each session. The password is given in class.</p>
+    <a class="cta" href="students.html">Enter student area</a>
   </section>
 
-  <section class="library" id="library">
-    <h2>Whitepaper Library</h2>
-    <p style="max-width:52em; margin:-10px 0 26px; font-size:.97rem;">
-      You don't need any of these to get the full value of the course. The sessions are built to
-      stand on their own. The whitepapers are here for anyone who finds the underlying analysis
-      interesting, with the derivations worked out, and sources named.
-    </p>
-    <div class="lib-grid">
-      <div class="lib-card">
-        <h4><a href="papers/relative-vs-absolute-risk.pdf">Relative Risk, Absolute Risk, and the Arithmetic of Persuasion</a></h4>
-        <p>Why one trial can be reported as a 95% cut or as a drop of less than a percentage
-          point, worked through atorvastatin and the COVID-19 vaccines.</p>
-        <p class="src">Sources: CTT Collaboration, ASCOT-LLA, CARDS, TNT, Olliaro et al. 2021</p>
-      </div>
-      <div class="lib-card">
-        <h4><a href="papers/bmi-mortality-methodology.pdf">Absolute Mortality Risk as a Function of BMI</a></h4>
-        <p>How the course's BMI risk curves are built, and where each assumption is most
-          likely to mislead.</p>
-        <p class="src">Sources: Global BMI Mortality Collaboration 2016, SSA period life table 2019, WHO TRS 894</p>
-      </div>
-      <div class="lib-card">
-        <h4><a href="papers/blood-pressure-mortality.pdf">Blood Pressure and Mortality</a></h4>
-        <p>The dose-response between usual pressure and vascular death, and a Bayesian network
-          running from age, sex, and both pressures to ten-year cardiovascular death.</p>
-        <p class="src">Sources: Lewington et al. 2002, SPRINT 2015 and 2021, Franklin et al. 1999 and 2001, SHEP 1991</p>
-      </div>
-      <div class="lib-card">
-        <h4><a href="papers/how-sure-is-sure-enough.pdf">How Sure Is Sure Enough?</a></h4>
-        <p>Why a finding that makes headlines in medicine would not count as a discovery
-          in physics.</p>
-        <p class="src">Sources: ATLAS and CMS 2012, Berger and Sellke 1987, Ioannidis 2005, ASA statement 2016</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="gate" id="students">
-    <div class="gate-box">
-      <div>
-        <h2>Student Materials</h2>
-        <p>Students have access to the full slide decks, extended whitepapers, datasets,
-          and session videos. The student page is password protected. The password is given
-          out in class.</p>
-      </div>
-      <a class="gate-btn" href="students.html">Enter student area</a>
-    </div>
-  </section>
-
-  <footer id="about">
-    <div class="foot">
-      <div class="bio">
-        <h5>Murray Cantor, PhD</h5>
-        <p>Mathematician (PhD, UC Berkeley) and retired IBM Distinguished Engineer with a long
-          career applying probabilistic reasoning to complex systems.</p>
-      </div>
-      <div class="bio">
-        <h5>Joel Keenan, MD</h5>
-        <p>Physician (MD, University of Vermont, internal medicine board certified) and
-          co-presenter, bringing the clinical perspective: what the evidence looks like from the
-          examining room, and how patients and doctors can reason about it together.</p>
-      </div>
-    </div>
-    <p class="contact">Questions about the course? You can reach Murray Cantor at
-      <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a>.</p>
-    <p class="colophon">© 2026 Healthy Skepticism · healthy-skepticism.com · All course materials
-      cite their sources; illustrative examples are labeled as such.</p>
+  <footer>
+    <p>Murray Cantor is a mathematician (PhD, UC Berkeley) and retired IBM Distinguished Engineer with a long career applying probabilistic reasoning to complex systems.</p>
+    <p><a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a></p>
   </footer>
-</main>
 
+</div>
 </body>
 </html>

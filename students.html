@@ -1,119 +1,268 @@
 <!DOCTYPE html>
+<!--
+  Healthy Skepticism — course materials page.
+
+  EVERYTHING A STUDENT NEEDS FOR ONE SESSION SITS IN THAT SESSION'S BLOCK.
+  To add or change a file: drop it in /materials/ and edit the href.
+  Whitepapers are NOT listed here. They live on the whitepaper pages, and the
+  slides and take-homes name the ones that bear on each session.
+
+  Expected files (rename to match whatever you actually commit):
+    materials/session1-takehome.pdf      materials/session1-slides.pdf
+    materials/session2-takehome.pdf      materials/session2-slides.pdf
+    materials/session3-takehome.pdf      materials/session3-slides.pdf
+    materials/session4-takehome.pdf      materials/session4-slides.pdf
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>Student Materials &mdash; Healthy Skepticism</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Course materials · Healthy Skepticism</title>
 <style>
   :root{
-    --navy:#1F3A5F; --teal:#2E7D7B; --terra:#C0623B; --amber:#D9A441;
-    --peach:#F2D8C2; --darkred:#8C2F2F; --paper:#FBF8F3; --ink:#22303F;
-    --rule:#D8D2C6;
-    --display:'Fraunces', Georgia, serif;
-    --body:'Source Serif 4', Georgia, serif;
+    --navy:#1F3A5F;
+    --teal:#2E7D7B;
+    --teal-pale:#7FB3B5;
+    --terra:#C05B3C;
+    --amber:#E08A3C;
+    --darkred:#8B2323;
+    --ink:#22252A;
+    --paper:#FBF9F5;
+    --rule:#DBD5CA;
+    --muted:#6B6F76;
+    --serif:"Bookman Old Style","Bookman","Georgia",serif;
+    --sans:"Calibri","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{font-family:var(--body); background:var(--paper); color:var(--ink);
-       line-height:1.6; -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:760px; margin:0 auto; padding:48px 24px 72px;}
-  .back{font-size:.88rem; color:var(--teal); text-decoration:none;}
-  .back:hover{text-decoration:underline;}
-  h1{font-family:var(--display); font-size:2.1rem; font-weight:700; color:var(--navy);
-     margin:22px 0 8px; line-height:1.15;}
-  .lede{font-size:1rem; max-width:44em; margin-bottom:30px;}
-  .panel{background:var(--navy); color:var(--peach); padding:30px; border-radius:2px;}
-  .panel h2{font-family:var(--display); color:var(--peach); font-size:1.25rem; margin-bottom:6px;}
-  .panel p{font-size:.95rem; max-width:40em;}
-  form{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
-  input[type=password]{
-    font-family:var(--body); font-size:1rem; padding:11px 14px; border:none;
-    border-radius:2px; min-width:240px; flex:1 1 240px; color:var(--ink);
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:19px;
+    line-height:1.55;
   }
-  button{
-    background:var(--amber); color:var(--navy); border:none; font-family:var(--body);
-    font-weight:600; font-size:1rem; padding:12px 26px; cursor:pointer; border-radius:2px;
+  .wrap{max-width:50rem;margin:0 auto;padding:3rem 1.5rem 5rem}
+  a{color:var(--navy)}
+  a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:2px}
+
+  /* ---------- page head ---------- */
+  .masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2.5rem}
+  .course{
+    font-family:var(--sans);
+    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);font-weight:700;margin:0 0 .6rem
   }
-  button:hover{background:var(--peach);}
-  .msg{margin-top:14px; font-size:.9rem; min-height:1.2em;}
-  .msg.bad{color:#FFC9B0;}
-  #materials{display:none; margin-top:6px;}
-  .deck-list{list-style:none; margin:0; padding:0;}
-  .deck-list li{
-    padding:13px 0; border-bottom:1px solid var(--rule);
-    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+  h1{font-family:var(--serif);font-size:2.4rem;line-height:1.15;margin:0;color:var(--navy);font-weight:400}
+
+  /* ---------- session block ---------- */
+  .session{padding:2.5rem 0;border-bottom:1px solid var(--rule)}
+  .session:last-of-type{border-bottom:0}
+
+  .marker{
+    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+    color:var(--muted);margin-bottom:.5rem
   }
-  .deck-list li:last-child{border-bottom:none;}
-  .deck-list a{color:var(--teal); font-weight:600; text-decoration:none; font-size:1.02rem;}
-  .deck-list a:hover{text-decoration:underline;}
-  .deck-list span{font-size:.82rem; color:#8A8474; white-space:nowrap;}
-  .note{margin-top:18px; font-size:.87rem; font-style:italic; color:#6B6559; max-width:44em;}
-  footer{margin-top:44px; padding-top:18px; border-top:1px solid var(--rule);
-         font-size:.82rem; color:#6B6559;}
-  footer a{color:var(--navy);}
-  @media (max-width:520px){ h1{font-size:1.7rem;} .panel{padding:22px;} }
+
+  h2{font-family:var(--serif);font-size:1.75rem;line-height:1.2;margin:0;font-weight:400}
+  .question{
+    font-family:var(--serif);font-style:italic;font-size:1.15rem;
+    margin:.5rem 0 0;padding-left:.9rem;border-left:3px solid var(--accent,var(--teal));
+    color:var(--accent,var(--teal))
+  }
+  .s1{--accent:var(--teal)}
+  .s2{--accent:var(--navy)}
+  .s3{--accent:var(--terra)}
+  .s4{--accent:var(--darkred)}
+
+  ul.files{list-style:none;margin:1.5rem 0 0;padding:0}
+  ul.files li{padding:.55rem 0;border-top:1px solid var(--rule)}
+  ul.files li:first-child{border-top:0}
+  ul.files a{text-decoration:none;font-weight:600;border-bottom:1.5px solid var(--teal-pale)}
+  ul.files a:hover{border-bottom-color:var(--accent,var(--teal))}
+  .kind{
+    display:inline-block;min-width:5.5rem;
+    font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:700
+  }
+
+  @media (max-width:34rem){
+    body{font-size:18px}
+    .wrap{padding:2rem 1.15rem 3.5rem}
+    h1{font-size:1.9rem}
+    h2{font-size:1.45rem}
+    .kind{display:block;min-width:0;margin-bottom:.15rem}
+  }
+
+  /* ---------- footer ---------- */
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--navy);font-size:.95rem;color:var(--muted)}
+  footer a{color:var(--navy)}
+
+  /* ---------- password gate ---------- */
+  #gate{
+    min-height:60vh;display:flex;flex-direction:column;justify-content:center;
+    max-width:24rem
+  }
+  #gate h1{margin-bottom:1.25rem}
+  #gate label{display:block;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;color:var(--muted);margin-bottom:.5rem}
+  #gate .row{display:flex;gap:.5rem}
+  #gate input{
+    flex:1;min-width:0;font-family:var(--sans);font-size:1.05rem;padding:.6rem .7rem;
+    border:1.5px solid var(--rule);border-radius:3px;background:#fff;color:var(--ink)
+  }
+  #gate input:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-color:var(--teal)}
+  #gate button{
+    font-family:var(--sans);font-size:1.05rem;font-weight:600;padding:.6rem 1.1rem;
+    border:0;border-radius:3px;background:var(--navy);color:#fff;cursor:pointer
+  }
+  #gate button:hover{background:var(--teal)}
+  #gate button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  #gate .hint{margin:.9rem 0 0;font-size:.95rem;color:var(--muted)}
+  #gate .error{margin:.9rem 0 0;font-size:.95rem;color:var(--darkred);font-weight:600}
+  [hidden]{display:none !important}
 </style>
 </head>
 <body>
+
+<!-- ===================== PASSWORD GATE =====================
+  Change the password by replacing PASSWORD_SHA256 below.
+  To get the hash for a new password, run this in Terminal
+  (note the -n, which keeps the newline out of the hash):
+
+      echo -n 'yournewpassword' | shasum -a 256
+
+  Paste the long hex string it prints between the quotes.
+========================================================== -->
+
 <div class="wrap">
-  <a class="back" href="index.html">&larr; Healthy Skepticism</a>
-  <h1>Student Materials</h1>
-  <p class="lede">Slide decks and course materials for students enrolled in the course.
-    Enter the password given out in class.</p>
-
-  <div class="panel" id="gate">
-    <h2>Password</h2>
-    <form id="form">
-      <input type="password" id="pw" autocomplete="current-password"
-             placeholder="Password from class" aria-label="Password">
-      <button type="submit">Unlock</button>
-    </form>
-    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  <div id="gate">
+    <p class="course">Healthy Skepticism</p>
+    <h1>Course materials</h1>
+    <label for="pw">Class password</label>
+    <div class="row">
+      <input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false">
+      <button id="go" type="button">Enter</button>
+    </div>
+    <p class="hint" id="hint">The password is given in class. It is the same all term.</p>
+    <p class="error" id="err" hidden>That password does not match. Check for a stray capital or space.</p>
   </div>
+</div>
 
-  <div id="materials"></div>
+<div class="wrap" id="materials" hidden>
+
+  <header class="masthead">
+    <p class="course">Healthy Skepticism</p>
+    <h1>Course materials</h1>
+  </header>
+
+  <!-- ================= SESSION 1 ================= -->
+  <section class="session s1">
+    <p class="marker">Session 1</p>
+    <h2>Relative reporting</h2>
+    <p class="question">What does a 36% improvement from taking a drug really mean?</p>
+    <ul class="files">
+      <li><span class="kind">Summary</span><a href="materials/session1-takehome.pdf">Take-home summary</a></li>
+      <li><span class="kind">Slides</span><a href="materials/session1-slides.pdf">Slides from the session</a></li>
+    </ul>
+  </section>
+
+  <!-- ================= SESSION 2 ================= -->
+  <section class="session s2">
+    <p class="marker">Session 2</p>
+    <h2>Probability reversal</h2>
+    <p class="question">What does a positive COVID test really mean?</p>
+    <ul class="files">
+      <li><span class="kind">Summary</span><a href="materials/session2-takehome.pdf">Take-home summary</a></li>
+      <li><span class="kind">Slides</span><a href="materials/session2-slides.pdf">Slides from the session</a></li>
+    </ul>
+  </section>
+
+  <!-- ================= SESSION 3 ================= -->
+  <section class="session s3">
+    <p class="marker">Session 3</p>
+    <h2>Arbitrary categories, and the Bernoulli fallacy</h2>
+    <p class="question">How concerned should you be if your systolic blood pressure goes from 119 to 120? And why does the published medical advice keep changing?</p>
+    <ul class="files">
+      <li><span class="kind">Summary</span><a href="materials/session3-takehome.pdf">Take-home summary</a></li>
+      <li><span class="kind">Slides</span><a href="materials/session3-slides.pdf">Slides from the session</a></li>
+    </ul>
+  </section>
+
+  <!-- ================= SESSION 4 ================= -->
+  <section class="session s4">
+    <p class="marker">Session 4</p>
+    <h2>The causal leap</h2>
+    <p class="question">Does bird watching prevent dementia?</p>
+    <ul class="files">
+      <li><span class="kind">Summary</span><a href="materials/session4-takehome.pdf">Take-home summary</a></li>
+      <li><span class="kind">Slides</span><a href="materials/session4-slides.pdf">Slides from the session</a></li>
+    </ul>
+  </section>
 
   <footer>
-    Trouble getting in? Email <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a>.
-    Materials are for enrolled students. Please do not repost them.
+    <p>Questions about anything here: <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a></p>
   </footer>
+
 </div>
 
 <script>
-const SALT = "75A1+45faPiNDpAb2jS+jg==", IV = "CciO2ZkJm+FeCT22", DATA = "Rj0R5j61GV08WPehGwYyYy+Yw3m9vK65HUXppO0PbfKP3xRXTjHT6VlsLEl9wCecPBZ3K7P83ZzvySN1MQdybe9Mf6bIxC5PeQkYvrxi7ODeCu52LWlvER0IkX0Gel59MlDfHRgvVuXwNZEYN2qSYUWHBkcnSIbSn5qSCkmc8z1Zee9TEuq8dYzJXe3aBMdMvycrQTbgr+xGKBMoQXUNLXuLI+7Xru+Ff22qoPKOxJKSBkd2JdGPG2dV9TbACU+tIdbOlnwfmwpl9EvlysCFp5o7VaZW/ZA/t2yigQ9798ATdpguOC2TBhUrwOn5D0CvIvq0g61BhYkzst2fraMxLGBULKf9WMIW9h9XqB7hqZcgTuldP8Q4bVA9pnmn3sUW2WkOJRntmm3y+4zyOcZ6Jjwy4NCL3tjImp9e3Mxxh2LHhQuApyCr9by8MJ80r8KyFyXTrxycPqFxHsMgOanuEfRMU2nKYL9s+QNtxlFFwa2qKu5xwNapn++XWn/mqpXv4z2GByLuQXBsYjmPRuq7BoRqdPTF0JrwfEzV2tDwCn988wJ7u1BVNmkVwpfkHqdQN2Am7L7noj19Ocuo8pFQRJK7XrMQ0HGXSgAsGFirAmlU8dXYMLKPOccbDRidf7sKNceYmAdnqGb1Sh0h/TN4rEEQUt9z8NuM3VEZV7qXmDfReZr2AcfC3ppwNpqBo20mbZM41vrHFpXi2oIqP3rL8L7ysn10GKQ+wM7ojF806XDt5ggy5feMWWFW4O38EJCSU7Bd3wR1VJFppywefvtXJc3iENAVAfPc7EWBU/CbU/a2VOpJRqk7feO7jq0iebNWEHSrt2mzFw==", ITER = 250000;
-const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+(function () {
+  var PASSWORD_SHA256 = "b3ba65b2bee2cf9635440b7e170e5d5cd7b3f47a245763f4a87e4685c7922e4d";
 
-async function unlock(password){
-  const enc = new TextEncoder();
-  const base = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
-  const key = await crypto.subtle.deriveKey(
-    {name:"PBKDF2", salt:b64(SALT), iterations:ITER, hash:"SHA-256"},
-    base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
-  const plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(IV)}, key, b64(DATA));
-  return new TextDecoder().decode(plain);
-}
+  var gate = document.getElementById("gate");
+  var page = document.getElementById("materials");
+  var input = document.getElementById("pw");
+  var err = document.getElementById("err");
 
-const form = document.getElementById("form");
-const msg  = document.getElementById("msg");
-
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const pw = document.getElementById("pw").value;
-  if(!pw) return;
-  msg.className = "msg"; msg.textContent = "Checking\u2026";
-  try{
-    const html = await unlock(pw);
-    document.getElementById("gate").style.display = "none";
-    const box = document.getElementById("materials");
-    box.innerHTML = html;
-    box.style.display = "block";
-  }catch(err){
-    msg.className = "msg bad";
-    msg.textContent = "That password did not work. Check for stray spaces, and note it is case sensitive.";
+  function reveal() {
+    gate.parentNode.hidden = true;
+    page.hidden = false;
   }
-});
+
+  function hash(text) {
+    var bytes = new TextEncoder().encode(text);
+    return crypto.subtle.digest("SHA-256", bytes).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return b.toString(16).padStart(2, "0");
+      }).join("");
+    });
+  }
+
+  function submit() {
+    hash(input.value.trim()).then(function (digest) {
+      if (digest === PASSWORD_SHA256) {
+        try { sessionStorage.setItem("hs-materials", "1"); } catch (e) {}
+        reveal();
+      } else {
+        err.hidden = false;
+        input.select();
+      }
+    });
+  }
+
+  document.getElementById("go").addEventListener("click", submit);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { submit(); }
+  });
+  input.addEventListener("input", function () { err.hidden = true; });
+
+  try {
+    if (sessionStorage.getItem("hs-materials") === "1") { reveal(); }
+  } catch (e) {}
+
+  if (!window.crypto || !crypto.subtle) {
+    document.getElementById("hint").textContent =
+      (location.protocol === "file:")
+        ? "Testing locally? Serve the folder with: python3 -m http.server"
+        : "This page needs a current browser. Please email for the files.";
+  }
+
+  input.focus();
+})();
 </script>
 </body>
 </html>
