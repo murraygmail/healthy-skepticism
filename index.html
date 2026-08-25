@@ -2,114 +2,36 @@
 <!--
   Healthy Skepticism — landing page.
 
-  Built to match materials.html, so the two pages share one stylesheet's worth
-  of tokens. Three things to check before committing:
+  The site is three pages and one stylesheet:
+    index.html     this page: what the course is, where it is offered, what is new
+    papers.html    the public paper library
+    students.html  the gated course materials, one block per session
+    site.css       all styling for all three pages
 
-    1. The "Enter student area" link points to students.html. Change it if the
-       gated page ends up with a different filename.
-    2. The OFFERINGS block is marked below. Add a venue by copying one
-       <dt>/<dd> pair. Check the dates each term.
-    3. The whitepaper section has been removed for now. It sat between the
-       offerings and the student area if you want it back.
+  Three blocks below are marked for editing. Search for the banner comments:
+
+    1. OFFERINGS   add or change a venue by copying one <dt>/<dd> pair
+    2. NOTICES     add one <li> when a paper goes up on papers.html
+    3. Footer      email and bio
+
+  Adding a paper is two edits: the entry on papers.html and a notice here.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Healthy Skepticism</title>
-<meta name="description" content="A short course on reading medical claims: what the numbers in a study, a screening test or a drug advertisement actually say.">
-<style>
-  :root{
-    --navy:#1F3A5F;
-    --teal:#2E7D7B;
-    --teal-pale:#7FB3B5;
-    --terra:#C05B3C;
-    --amber:#E08A3C;
-    --darkred:#8B2323;
-    --ink:#22252A;
-    --paper:#FBF9F5;
-    --rule:#DBD5CA;
-    --muted:#6B6F76;
-    --serif:"Bookman Old Style","Bookman","Georgia",serif;
-    --sans:"Calibri","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  }
-
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:var(--sans);font-size:19px;line-height:1.55;
-  }
-  .wrap{max-width:50rem;margin:0 auto;padding:3rem 1.5rem 5rem}
-  a{color:var(--navy)}
-  a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:2px}
-
-  /* ---------- masthead ---------- */
-  .masthead{border-bottom:2px solid var(--navy);padding-bottom:1.75rem;margin-bottom:2.5rem}
-  .eyebrow{
-    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--teal);font-weight:700;margin:0 0 .6rem
-  }
-  h1{font-family:var(--serif);font-size:2.6rem;line-height:1.12;margin:0 0 1rem;color:var(--navy);font-weight:400}
-  .standfirst{margin:0;max-width:36rem;font-size:1.1rem}
-
-  /* ---------- sections ---------- */
-  section{padding:2.5rem 0;border-bottom:1px solid var(--rule)}
-  section:last-of-type{border-bottom:0}
-  h2{font-family:var(--serif);font-size:1.6rem;line-height:1.2;margin:0 0 1rem;font-weight:400;color:var(--navy)}
-  p{max-width:38rem}
-  p:last-child{margin-bottom:0}
-
-  /* ---------- the five faults ---------- */
-  ol.faults{list-style:none;margin:0;padding:0;counter-reset:fault}
-  ol.faults li{padding:1rem 0;border-top:1px solid var(--rule);counter-increment:fault}
-  ol.faults li:first-child{border-top:0}
-  ol.faults .name{
-    font-family:var(--serif);font-size:1.2rem;color:var(--ink);display:block
-  }
-  ol.faults .name::before{
-    content:counter(fault);
-    font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--teal);
-    display:inline-block;min-width:1.6rem;vertical-align:.15em
-  }
-  ol.faults .q{
-    font-family:var(--serif);font-style:italic;color:var(--muted);
-    margin:.3rem 0 0 1.6rem;display:block
-  }
-
-
-  /* ---------- student area ---------- */
-  .cta{
-    display:inline-block;font-weight:600;text-decoration:none;color:#fff;
-    background:var(--navy);padding:.7rem 1.3rem;border-radius:3px;margin-top:.25rem
-  }
-  .cta:hover{background:var(--teal)}
-  .cta:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-
-  /* ---------- footer ---------- */
-  footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--navy);font-size:.95rem;color:var(--muted)}
-  footer p{max-width:38rem}
-  footer a{color:var(--navy)}
-
-  @media (max-width:34rem){
-    body{font-size:18px}
-    .wrap{padding:2rem 1.15rem 3.5rem}
-    h1{font-size:2rem}
-    h2{font-size:1.4rem}
-  }
-
-  /* ---------- venues ---------- */
-  dl.venues{margin:0}
-  dl.venues dt{
-    font-family:var(--serif);font-size:1.15rem;color:var(--ink);
-    padding-top:1rem;margin-top:1rem;border-top:1px solid var(--rule)
-  }
-  dl.venues dt:first-child{padding-top:0;margin-top:0;border-top:0}
-  dl.venues dd{margin:.3rem 0 0;max-width:38rem;color:var(--muted)}
-</style>
+<meta name="description" content="A short course on reading medical claims: what the numbers in a study, a screening test or a drug advertisement actually say. Free papers on risk, testing and causation.">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <div class="wrap">
+
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="papers.html">Papers</a>
+    <a href="students.html">Course materials</a>
+  </nav>
 
   <header class="masthead">
     <p class="eyebrow">A short course</p>
@@ -160,12 +82,59 @@
   </section>
   <!-- ============================================================= -->
 
-
   <section>
-    <h2>For students</h2>
-    <p>Slides and take-home summaries for each session. The password is given in class.</p>
-    <a class="cta" href="students.html">Enter student area</a>
+    <h2>Papers and course materials</h2>
+    <p>The papers are open to anyone. They work through one claim at a time, with the sources named, and they do not assume you took the course. The course materials are for students, behind the password given in class.</p>
+    <div class="cards">
+      <a class="card" href="papers.html">
+        <h3>Papers</h3>
+        <p>Free to read and share. Risk arithmetic, GLP-1 drugs, blood pressure, BMI, and what significance does not tell you.</p>
+      </a>
+      <a class="card locked" href="students.html">
+        <h3>Course materials</h3>
+        <p>Slides and take-home summaries for each session. Password given in class.</p>
+      </a>
+    </div>
   </section>
+
+  <!-- ============ NOTICES: newest first, add one <li> per paper ============
+       Copy this shape. Keep the anchor in step with the id on papers.html.
+
+         <li>
+           <span class="when">Month Year</span>
+           <a href="papers.html#anchor-id">Title of the paper</a>
+           <span class="gloss">One line on what it answers.</span>
+         </li>
+
+       Four or five entries is plenty. Drop the oldest off the bottom.
+  ======================================================================== -->
+  <section>
+    <h2>New on the site</h2>
+    <ul class="notices">
+      <li>
+        <span class="when">August 2026</span>
+        <a href="papers.html#glp1-cheating">Is Taking a GLP-1 Drug Cheating?</a>
+        <span class="gloss">Appetite is a control system, not a decision, and the drug supplies a signal that is running faint.</span>
+      </li>
+      <li>
+        <span class="when">July 2026</span>
+        <a href="papers.html#arithmetic-of-persuasion">Relative Risk, Absolute Risk, and the Arithmetic of Persuasion</a>
+        <span class="gloss">The same trial results written two ways, worked through for Lipitor and the COVID-19 vaccines.</span>
+      </li>
+      <li>
+        <span class="when">July 2026</span>
+        <a href="papers.html#blood-pressure-mortality">Blood Pressure and Mortality</a>
+        <span class="gloss">What the large studies show, and a small network that turns a reading into a ten-year risk.</span>
+      </li>
+      <li>
+        <span class="when">July 2026</span>
+        <a href="papers.html#bmi-mortality">Absolute Mortality Risk as a Function of BMI</a>
+        <span class="gloss">How the BMI curves in the course are built, and why the category lines fall where they do.</span>
+      </li>
+    </ul>
+    <p class="more"><a href="papers.html">All papers</a></p>
+  </section>
+  <!-- ====================================================================== -->
 
   <footer>
     <p>Murray Cantor is a mathematician (PhD, UC Berkeley) and retired IBM Distinguished Engineer with a long career applying probabilistic reasoning to complex systems.</p>

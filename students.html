@@ -1,144 +1,50 @@
 <!DOCTYPE html>
 <!--
-  Healthy Skepticism — course materials page.
+  Healthy Skepticism — course materials, behind the class password.
 
   EVERYTHING A STUDENT NEEDS FOR ONE SESSION SITS IN THAT SESSION'S BLOCK.
-  To add or change a file: drop it in /materials/ and edit the href.
-  Whitepapers are NOT listed here. They live on the whitepaper pages, and the
-  slides and take-homes name the ones that bear on each session.
+  To add or change a file: drop it in materials/ and edit the href.
 
-  Expected files (rename to match whatever you actually commit):
+  Papers are NOT listed here. They live on papers.html, and the slides and
+  take-homes name the ones that bear on each session.
+
+  Venue neutral on purpose: no dates and no venue names, so the same page
+  serves every offering.
+
+  Expected files:
     materials/session1-takehome.pdf      materials/session1-slides.pdf
     materials/session2-takehome.pdf      materials/session2-slides.pdf
     materials/session3-takehome.pdf      materials/session3-slides.pdf
     materials/session4-takehome.pdf      materials/session4-slides.pdf
+
+  Styling lives in site.css with the rest of the site.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Course materials · Healthy Skepticism</title>
-<style>
-  :root{
-    --navy:#1F3A5F;
-    --teal:#2E7D7B;
-    --teal-pale:#7FB3B5;
-    --terra:#C05B3C;
-    --amber:#E08A3C;
-    --darkred:#8B2323;
-    --ink:#22252A;
-    --paper:#FBF9F5;
-    --rule:#DBD5CA;
-    --muted:#6B6F76;
-    --serif:"Bookman Old Style","Bookman","Georgia",serif;
-    --sans:"Calibri","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  }
-
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:19px;
-    line-height:1.55;
-  }
-  .wrap{max-width:50rem;margin:0 auto;padding:3rem 1.5rem 5rem}
-  a{color:var(--navy)}
-  a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:2px}
-
-  /* ---------- page head ---------- */
-  .masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2.5rem}
-  .course{
-    font-family:var(--sans);
-    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--teal);font-weight:700;margin:0 0 .6rem
-  }
-  h1{font-family:var(--serif);font-size:2.4rem;line-height:1.15;margin:0;color:var(--navy);font-weight:400}
-
-  /* ---------- session block ---------- */
-  .session{padding:2.5rem 0;border-bottom:1px solid var(--rule)}
-  .session:last-of-type{border-bottom:0}
-
-  .marker{
-    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
-    color:var(--muted);margin-bottom:.5rem
-  }
-
-  h2{font-family:var(--serif);font-size:1.75rem;line-height:1.2;margin:0;font-weight:400}
-  .question{
-    font-family:var(--serif);font-style:italic;font-size:1.15rem;
-    margin:.5rem 0 0;padding-left:.9rem;border-left:3px solid var(--accent,var(--teal));
-    color:var(--accent,var(--teal))
-  }
-  .s1{--accent:var(--teal)}
-  .s2{--accent:var(--navy)}
-  .s3{--accent:var(--terra)}
-  .s4{--accent:var(--darkred)}
-
-  ul.files{list-style:none;margin:1.5rem 0 0;padding:0}
-  ul.files li{padding:.55rem 0;border-top:1px solid var(--rule)}
-  ul.files li:first-child{border-top:0}
-  ul.files a{text-decoration:none;font-weight:600;border-bottom:1.5px solid var(--teal-pale)}
-  ul.files a:hover{border-bottom-color:var(--accent,var(--teal))}
-  .kind{
-    display:inline-block;min-width:5.5rem;
-    font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--muted);font-weight:700
-  }
-
-  @media (max-width:34rem){
-    body{font-size:18px}
-    .wrap{padding:2rem 1.15rem 3.5rem}
-    h1{font-size:1.9rem}
-    h2{font-size:1.45rem}
-    .kind{display:block;min-width:0;margin-bottom:.15rem}
-  }
-
-  /* ---------- footer ---------- */
-  footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--navy);font-size:.95rem;color:var(--muted)}
-  footer a{color:var(--navy)}
-
-  /* ---------- password gate ---------- */
-  #gate{
-    min-height:60vh;display:flex;flex-direction:column;justify-content:center;
-    max-width:24rem
-  }
-  #gate h1{margin-bottom:1.25rem}
-  #gate label{display:block;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
-    font-weight:700;color:var(--muted);margin-bottom:.5rem}
-  #gate .row{display:flex;gap:.5rem}
-  #gate input{
-    flex:1;min-width:0;font-family:var(--sans);font-size:1.05rem;padding:.6rem .7rem;
-    border:1.5px solid var(--rule);border-radius:3px;background:#fff;color:var(--ink)
-  }
-  #gate input:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-color:var(--teal)}
-  #gate button{
-    font-family:var(--sans);font-size:1.05rem;font-weight:600;padding:.6rem 1.1rem;
-    border:0;border-radius:3px;background:var(--navy);color:#fff;cursor:pointer
-  }
-  #gate button:hover{background:var(--teal)}
-  #gate button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-  #gate .hint{margin:.9rem 0 0;font-size:.95rem;color:var(--muted)}
-  #gate .error{margin:.9rem 0 0;font-size:.95rem;color:var(--darkred);font-weight:600}
-  [hidden]{display:none !important}
-</style>
+<title>Course materials &middot; Healthy Skepticism</title>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <!-- ===================== PASSWORD GATE =====================
-  Change the password by replacing PASSWORD_SHA256 below.
-  To get the hash for a new password, run this in Terminal
-  (note the -n, which keeps the newline out of the hash):
+  Change the password by replacing PASSWORD_SHA256 at the foot
+  of this file. To get the hash for a new password, run this in
+  Terminal (note the -n, which keeps the newline out of the hash):
 
       echo -n 'yournewpassword' | shasum -a 256
 
   Paste the long hex string it prints between the quotes.
 ========================================================== -->
 
-<div class="wrap">
+<div class="wrap" id="gatewrap">
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="papers.html">Papers</a>
+    <a href="students.html" aria-current="page">Course materials</a>
+  </nav>
   <div id="gate">
     <p class="course">Healthy Skepticism</p>
     <h1>Course materials</h1>
@@ -153,6 +59,12 @@
 </div>
 
 <div class="wrap" id="materials" hidden>
+
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="papers.html">Papers</a>
+    <a href="students.html" aria-current="page">Course materials</a>
+  </nav>
 
   <header class="masthead">
     <p class="course">Healthy Skepticism</p>
@@ -174,7 +86,7 @@
   <section class="session s2">
     <p class="marker">Session 2</p>
     <h2>Probability reversal</h2>
-    <p class="question">What does a positive COVID test really mean?</p>
+    <p class="question">What does a negative COVID test really mean?</p>
     <ul class="files">
       <li><span class="kind">Summary</span><a href="materials/session2-takehome.pdf">Take-home summary</a></li>
       <li><span class="kind">Slides</span><a href="materials/session2-slides.pdf">Slides from the session</a></li>
@@ -204,6 +116,7 @@
   </section>
 
   <footer>
+    <p>The papers that bear on each session are on the <a href="papers.html">papers page</a>, open to anyone.</p>
     <p>Questions about anything here: <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a></p>
   </footer>
 
@@ -213,13 +126,13 @@
 (function () {
   var PASSWORD_SHA256 = "b3ba65b2bee2cf9635440b7e170e5d5cd7b3f47a245763f4a87e4685c7922e4d";
 
-  var gate = document.getElementById("gate");
+  var gatewrap = document.getElementById("gatewrap");
   var page = document.getElementById("materials");
   var input = document.getElementById("pw");
   var err = document.getElementById("err");
 
   function reveal() {
-    gate.parentNode.hidden = true;
+    gatewrap.hidden = true;
     page.hidden = false;
   }
 
