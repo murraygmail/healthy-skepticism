@@ -18,6 +18,7 @@
   --terra:#C05B3C;
   --amber:#E08A3C;
   --darkred:#8B2323;
+  --moss:#5A7247;
   --ink:#22252A;
   --paper:#FBF9F5;
   --rule:#DBD5CA;
@@ -37,6 +38,10 @@ body{
 a{color:var(--navy)}
 a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:2px}
 [hidden]{display:none !important}
+
+.masthead{position:relative}
+.mark-corner{position:absolute;top:0;right:0}
+@media (max-width:600px){.mark-corner{width:38px;height:56px}}
 
 /* ---------- site nav ---------- */
 .sitenav{
@@ -102,6 +107,7 @@ ol.faults .q{
   font-family:var(--serif);font-style:italic;color:var(--muted);
   margin:.3rem 0 0 1.6rem;display:block
 }
+ol.faults .expl{margin:.5rem 0 0 1.6rem}
 
 /* ---------- venues ---------- */
 dl.venues{margin:0}
@@ -151,6 +157,7 @@ article.paper .meta{
 .f3{--accent:var(--terra)}
 .f4{--accent:var(--darkred)}
 .f5{--accent:var(--amber)}
+.f6{--accent:var(--moss)}
 
 /* ---------- session blocks and file lists ---------- */
 .session{padding:2.5rem 0;border-bottom:1px solid var(--rule)}
