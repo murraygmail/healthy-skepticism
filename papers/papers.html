@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+  Healthy Skepticism — the paper library. Public, indexable, linkable.
+
+  TWO SECTIONS.
+
+    FAULT RELATED         papers that teach one of the five faults. Each entry
+                          carries its fault as a tag, and the fN class sets the
+                          accent colour. Ordered by fault, 1 through 5.
+
+    GENERAL INTEREST      papers on a medical subject, which answer a question
+                          rather than teach a fault. No tag, no fN class.
+                          Newest first.
+
+  If a paper teaches a fault, it goes in the first section even when it is
+  built around one subject. If it works through the evidence on a subject and
+  the fault is incidental, it goes in the second.
+
+  TO POST A PAPER, two edits:
+    1. Drop the PDF in papers/ and copy an <article class="paper"> block into
+       the right section. Give it an id: that id is what the notice on
+       index.html links to.
+    2. Add a notice at the top of the NOTICES list on index.html.
+
+  The two article shapes:
+
+    <article class="paper f3" id="short-anchor">        <-- teaches a fault
+      <p class="tag">Arbitrary categories</p>
+      <h3><a href="papers/file.pdf">Title</a></h3>
+      <p class="sub">One or two sentences on what it answers.</p>
+      <p class="meta">PDF &middot; N pages &middot; Posted Month Year</p>
+    </article>
+
+    <article class="paper" id="short-anchor">           <-- general interest
+      <h3><a href="papers/file.pdf">Title</a></h3>
+      <p class="sub">One or two sentences on what it answers.</p>
+      <p class="meta">PDF &middot; N pages &middot; Posted Month Year</p>
+    </article>
+
+  Fault classes: f1 relative reporting, f2 probability reversal,
+  f3 arbitrary categories, f4 the Bernoulli fallacy, f5 the causal leap.
+  The tag text must be the fault's name. Faults are never renamed.
+
+  The section headings carry no subtitle. Do not add one.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papers &middot; Healthy Skepticism</title>
+<meta name="description" content="Free papers on reading medical claims: relative and absolute risk, what statistical significance does not tell you, Eliquis dosing, GLP-1 drugs, blood pressure and mortality, BMI and mortality.">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1F3A5F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Papers · Healthy Skepticism">
+<meta property="og:description" content="Free papers on reading medical claims: relative and absolute risk, what statistical significance does not tell you, Eliquis dosing, GLP-1 drugs, blood pressure and mortality, BMI and mortality.">
+<meta property="og:image" content="https://healthy-skepticism.com/og-image.png">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="papers.html" aria-current="page">Papers</a>
+    <a href="students.html">Course materials</a>
+  </nav>
+
+  <header class="masthead">
+    <p class="course">Healthy Skepticism</p>
+    <h1>Papers</h1>
+    <p class="standfirst">Each paper takes one claim and works it through by counting, with the sources named. They were written alongside the course and stand on their own. Free to read, print and pass along.</p>
+  </header>
+
+  <!-- ============ FAULT RELATED: ordered by fault, 1 to 5 ============ -->
+  <div class="group">
+    <h2>Fault Related</h2>
+
+    <article class="paper f1" id="arithmetic-of-persuasion">
+      <p class="tag">Relative reporting</p>
+      <h3><a href="papers/relative-vs-absolute-risk.pdf">Relative Risk, Absolute Risk, and the Arithmetic of Persuasion</a></h3>
+      <p class="sub">Four numbers come out of one 2&times;2 table, and which one you report decides how impressive the result sounds. Worked through twice, for atorvastatin (Lipitor) and for the COVID-19 vaccines, with the traps to flag in any risk claim and a teaching example at the back.</p>
+      <p class="meta">PDF &middot; 12 pages &middot; Posted July 2026</p>
+    </article>
+
+    <article class="paper f4" id="how-sure-is-sure-enough">
+      <p class="tag">The Bernoulli fallacy</p>
+      <h3><a href="papers/how-sure-is-sure-enough.pdf">How Sure Is Sure Enough?</a></h3>
+      <p class="sub">CERN announced the Higgs boson at a fluke probability of about one in 3.5 million. A medical journal will publish at one in twenty. Both results get called significant. The paper walks the gap between the two questions, P(data | the null is true) and P(the hypothesis | data), and what it takes to get from one to the other.</p>
+      <p class="meta">PDF &middot; 3 pages &middot; Posted July 2026</p>
+    </article>
+
+    <article class="paper f6" id="syndrome-trap">
+      <p class="tag">The syndrome trap</p>
+      <h3><a href="papers/the-syndrome-trap.pdf">The Syndrome Trap</a></h3>
+      <p class="sub">A syndrome is a checklist with a name, not a disease, but the label gets talked about as if it had one mechanism and one treatment. Metabolic syndrome names sixteen different clinical pictures needing different medicine. Treating its checklist numbers failed outright, and the one drug class that helps the whole cluster arrived by accident, out of diabetes trials, because it hit an upstream mechanism the checklist never named. The same trap stretches across the autism spectrum, where one diagnosis spans a non-verbal child and a chief executive, and across ADHD, where two people can share the diagnosis and not one symptom; the new "multi-dimensional spectrum" is the old concept of a syndrome under a fresh name. Ends with the three questions that undo the trap.</p>
+      <p class="meta">PDF &middot; 5 pages &middot; Posted August 2026</p>
+    </article>
+  </div>
+
+  <!-- ============ GENERAL INTEREST: newest first ============ -->
+  <div class="group">
+    <h2>General Interest</h2>
+
+    <article class="paper" id="eliquis">
+      <h3><a href="papers/eliquis-and-its-dose.pdf">Eliquis and Its Dose</a></h3>
+      <p class="sub">Half the people on the reduced dose of Eliquis (apixaban) do not meet the label's criteria for it, and no trial has ever compared the two doses directly. The paper measures the drug against the alternative patients actually face, not taking it, works out where the 2.5&nbsp;mg rule came from, and builds a Bayesian model that turns the published trials into personal numbers, with honest ranges where the evidence runs out.</p>
+      <p class="sub">The paper travels with a kit for patients and their cardiologists: a short patient guide, a technical paper and one-page model card for the doctor, and a locked spreadsheet the two of them run together in a visit. <a href="eliquis.html">The kit, explained piece by piece</a>.</p>
+      <p class="meta">PDF &middot; 14 pages &middot; Posted August 2026</p>
+    </article>
+
+    <article class="paper" id="glp1-cheating">
+      <h3><a href="papers/GLP1_cheating.pdf">Is Taking a GLP-1 Drug Cheating?</a></h3>
+      <p class="sub">Body weight is regulated by hormones, not by resolve, and GLP-1 signalling runs weak in people carrying extra weight, so the drug supplies an input the body is not producing at strength. Works through what the hormone measurements show a year after a diet, why the concept of cheating does not apply, and what it means that the weight returns if you stop.</p>
+      <p class="meta">PDF &middot; 4 pages &middot; Posted August 2026</p>
+    </article>
+
+    <article class="paper" id="blood-pressure-mortality">
+      <h3><a href="papers/blood-pressure-mortality.pdf">Blood Pressure and Mortality</a></h3>
+      <p class="sub">Risk of vascular death climbs smoothly with usual pressure, with no safe ledge down to about 115 over 75, which is exactly what a cutoff at 130 or 140 hides. The paper separates what systolic and diastolic each tell you, then builds a small Bayesian network that takes age, sex and the two readings and returns a ten-year probability.</p>
+      <p class="meta">PDF &middot; 6 pages &middot; Posted July 2026</p>
+    </article>
+
+    <article class="paper" id="bmi-mortality">
+      <h3><a href="papers/bmi-mortality-methodology.pdf">Absolute Mortality Risk as a Function of BMI</a></h3>
+      <p class="sub">How the BMI curves used in the course are built: shape from a pooled analysis of 239 studies, level from a life table, context from the population distribution. The WHO bands only shade the figures. They never enter the calculation, because the bands are a lossy summary of a smooth signal rather than biological boundaries.</p>
+      <p class="meta">PDF &middot; 4 pages &middot; Posted July 2026</p>
+    </article>
+  </div>
+
+  <footer>
+    <p>The papers are written for readers, not for referees. Where a number is illustrative rather than measured, it says so on the page.</p>
+    <p>Corrections and questions: <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
