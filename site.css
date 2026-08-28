@@ -41,7 +41,7 @@ a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:
 
 .masthead{position:relative}
 .mark-corner{position:absolute;top:0;right:0}
-@media (max-width:600px){.mark-corner{width:38px;height:56px}}
+@media (max-width:600px){.mark-corner{width:44px;height:44px}}
 
 /* ---------- site nav ---------- */
 .sitenav{
