@@ -176,6 +176,7 @@ article.paper .meta{
 .s2{--accent:var(--navy)}
 .s3{--accent:var(--terra)}
 .s4{--accent:var(--darkred)}
+.s5{--accent:var(--teal)}
 ul.files{list-style:none;margin:1.5rem 0 0;padding:0}
 ul.files li{padding:.55rem 0;border-top:1px solid var(--rule)}
 ul.files li:first-child{border-top:0}
