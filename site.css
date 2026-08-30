@@ -61,6 +61,7 @@ a:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:
 }
 h1{font-family:var(--serif);font-size:2.6rem;line-height:1.12;margin:0 0 1rem;color:var(--navy);font-weight:400}
 .masthead h1:last-child{margin-bottom:0}
+.byline{margin:.2rem 0 0;font-size:1rem;color:var(--muted);letter-spacing:.02em}
 .standfirst{margin:0;max-width:36rem;font-size:1.1rem}
 
 /* ---------- sections ---------- */
