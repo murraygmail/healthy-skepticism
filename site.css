@@ -94,6 +94,15 @@ p:last-child{margin-bottom:0}
 .cta:hover{background:var(--teal)}
 .cta:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 
+/* ---------- invitation (home page, newsletter) ---------- */
+.invite{
+  margin:1.75rem 0 .5rem;padding:1.25rem 1.5rem;
+  border:1.5px solid var(--rule);border-left:4px solid var(--teal);
+  background:#fff;border-radius:3px
+}
+.invite p{margin:0 0 .9rem;max-width:none}
+.invite p:last-child{margin-bottom:0}
+
 /* ---------- the five faults ---------- */
 ol.faults{list-style:none;margin:0;padding:0;counter-reset:fault}
 ol.faults li{padding:1rem 0;border-top:1px solid var(--rule);counter-increment:fault}
