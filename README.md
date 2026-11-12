@@ -10,6 +10,8 @@ This folder is the master copy. It replaces the earlier `New Website` folder.
 |---|---|
 | `index.html` | Landing page: what the course is, the five faults, where it is offered, and **New on the site** |
 | `papers.html` | The paper library. Public and indexable. Two sections: Fault Related, General Interest |
+| `research.html` | Public list of research projects still in progress |
+| `eliquis.html` | The Eliquis project, behind its own password, linked from `research.html` |
 | `students.html` | Course materials, behind the class password. One block per session. No dates, no venue names |
 | `site.css` | All styling for all three pages |
 | `papers/` | Public paper PDFs |

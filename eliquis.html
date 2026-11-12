@@ -1,45 +1,70 @@
 <!DOCTYPE html>
 <!--
-  Healthy Skepticism — the Eliquis decision kit, explained on one page.
+  Healthy Skepticism — research in progress: the Eliquis project, behind a password.
 
-  This page introduces the kit that travels with the paper "Eliquis and
-  Its Dose": what each piece is, who it is for, and how a patient and a
-  cardiologist use the spreadsheet together in a visit.
+  This page is not ready for the public. It holds the Eliquis kit: what
+  each piece is, who it is for, and how a patient and a cardiologist use
+  the spreadsheet together in a visit.
 
   The files it links to live in papers/ (the four PDFs) and tools/ (the
-  locked spreadsheet). The entry on papers.html and the notice on
-  index.html both point here. If a file is renamed, fix it in all three
-  places.
+  locked spreadsheet). They are not listed on papers.html. This page is
+  linked from research.html. The gate below is
+  a courtesy screen, not security: anyone who knows a file's URL can fetch
+  it. Change the password by replacing PASSWORD_SHA256 at the foot of this
+  file (students.html explains the shasum command).
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Eliquis Dose &middot; Healthy Skepticism</title>
-<meta name="description" content="A free kit for talking about your Eliquis (apixaban) dose with your cardiologist: a patient guide, a technical paper and model card for the doctor, and a locked spreadsheet the two of you run together.">
+<meta name="robots" content="noindex">
+<title>Research in progress &middot; Healthy Skepticism</title>
 <link rel="stylesheet" href="site.css">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1F3A5F">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Your Eliquis Dose · Healthy Skepticism">
-<meta property="og:description" content="A free kit for talking about your Eliquis (apixaban) dose with your cardiologist: a patient guide, a technical paper and model card for the doctor, and a locked spreadsheet the two of you run together.">
+<meta property="og:title" content="Healthy Skepticism">
 <meta property="og:image" content="https://healthy-skepticism.com/og-image.png">
 </head>
 <body>
-<div class="wrap">
+
+<div class="wrap" id="gatewrap">
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="papers.html">Papers</a>
+    <a href="research.html">Research</a>
+    <a href="students.html">Course materials</a>
+  </nav>
+  <div id="gate">
+    <p class="course">Healthy Skepticism</p>
+    <h1>Research in progress</h1>
+    <p>This page holds a project that is still being built and is not ready for the public.</p>
+    <label for="pw">Password</label>
+    <div class="row">
+      <input id="pw" type="text" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button id="go" type="button">Enter</button>
+    </div>
+    <p class="hint" id="hint">The password is available on request.</p>
+    <p class="error" id="err" hidden>That password does not match. Check for a stray capital or space.</p>
+  </div>
+</div>
+
+<div class="wrap" id="research" hidden>
 
   <nav class="sitenav" aria-label="Site">
     <a href="index.html">Home</a>
     <a href="papers.html">Papers</a>
+    <a href="research.html">Research</a>
     <a href="students.html">Course materials</a>
   </nav>
 
   <header class="masthead">
-    <p class="eyebrow">A decision kit</p>
+    <p class="eyebrow">Research in progress</p>
     <h1>Your Eliquis Dose</h1>
     <p class="standfirst">A free kit for one conversation: you, your cardiologist, and the published evidence on Eliquis (apixaban), turned into numbers for a patient like you. Nothing to buy, nothing to sign up for, and nothing in it that asks you to change anything on your own.</p>
+    <p class="standfirst"><strong>Status.</strong> This project is a work in progress and is not ready for the public. Please do not pass it along yet.</p>
   </header>
 
   <section>
@@ -100,11 +125,66 @@
   </section>
 
   <footer>
-    <p>The kit is free to read, print and pass along. Where a number is illustrative rather than measured, it says so on the page.</p>
+    <p>This kit is still being developed. Where a number is illustrative rather than measured, it says so on the page.</p>
     <p>Corrections and questions: <a href="mailto:murraycantor+course@gmail.com">murraycantor+course@gmail.com</a></p>
   </footer>
 
 </div>
+<script>
+(function () {
+  var PASSWORD_SHA256 = "008c89107deb9959f8f4d1c3df9411c174abd0bc07b340c19622f7561548786a";
+
+  var gatewrap = document.getElementById("gatewrap");
+  var page = document.getElementById("research");
+  var input = document.getElementById("pw");
+  var err = document.getElementById("err");
+
+  function reveal() {
+    gatewrap.hidden = true;
+    page.hidden = false;
+  }
+
+  function hash(text) {
+    var bytes = new TextEncoder().encode(text);
+    return crypto.subtle.digest("SHA-256", bytes).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return b.toString(16).padStart(2, "0");
+      }).join("");
+    });
+  }
+
+  function submit() {
+    hash(input.value.trim()).then(function (digest) {
+      if (digest === PASSWORD_SHA256) {
+        try { sessionStorage.setItem("hs-research", "1"); } catch (e) {}
+        reveal();
+      } else {
+        err.hidden = false;
+        input.select();
+      }
+    });
+  }
+
+  document.getElementById("go").addEventListener("click", submit);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { submit(); }
+  });
+  input.addEventListener("input", function () { err.hidden = true; });
+
+  try {
+    if (sessionStorage.getItem("hs-research") === "1") { reveal(); }
+  } catch (e) {}
+
+  if (!window.crypto || !crypto.subtle) {
+    document.getElementById("hint").textContent =
+      (location.protocol === "file:")
+        ? "Testing locally? Serve the folder with: python3 -m http.server"
+        : "This page needs a current browser. Please email for the files.";
+  }
+
+  input.focus();
+})();
+</script>
 <script data-goatcounter="https://healthy-skepticism.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
